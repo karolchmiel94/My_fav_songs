@@ -21,6 +21,14 @@ class SavedSongsViewController: UIViewController {
         noSongsLabel.isHidden = true
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        WebService.sharedInstance.getSongsWith(query: "Meek, oh why", onSuccess: { (data) in
+            print("succes")
+        }) { (error) in
+            print(error)
+        }
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
