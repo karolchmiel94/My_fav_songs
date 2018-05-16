@@ -14,6 +14,10 @@
 		3C9DDDAA20AA13BC00D72ABE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3C9DDDA920AA13BC00D72ABE /* Assets.xcassets */; };
 		3C9DDDAD20AA13BC00D72ABE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3C9DDDAB20AA13BC00D72ABE /* LaunchScreen.storyboard */; };
 		3C9DDDB820AA13BD00D72ABE /* My_fav_songsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C9DDDB720AA13BD00D72ABE /* My_fav_songsTests.swift */; };
+		3C9DDDC720AB7CCB00D72ABE /* SongsSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C9DDDC620AB7CCB00D72ABE /* SongsSearchViewController.swift */; };
+		3C9DDDC920AB7CD900D72ABE /* SavedSongsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C9DDDC820AB7CD900D72ABE /* SavedSongsViewController.swift */; };
+		3C9DDDCC20AB887200D72ABE /* SongCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3C9DDDCB20AB887200D72ABE /* SongCell.xib */; };
+		3C9DDDCE20AB8B8E00D72ABE /* SongTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C9DDDCD20AB8B8E00D72ABE /* SongTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,6 +42,10 @@
 		3C9DDDB320AA13BD00D72ABE /* My fav songsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "My fav songsTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3C9DDDB720AA13BD00D72ABE /* My_fav_songsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = My_fav_songsTests.swift; sourceTree = "<group>"; };
 		3C9DDDB920AA13BD00D72ABE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3C9DDDC620AB7CCB00D72ABE /* SongsSearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongsSearchViewController.swift; sourceTree = "<group>"; };
+		3C9DDDC820AB7CD900D72ABE /* SavedSongsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedSongsViewController.swift; sourceTree = "<group>"; };
+		3C9DDDCB20AB887200D72ABE /* SongCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SongCell.xib; sourceTree = "<group>"; };
+		3C9DDDCD20AB8B8E00D72ABE /* SongTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,6 +88,7 @@
 			isa = PBXGroup;
 			children = (
 				3C9DDD9F20AA13BB00D72ABE /* AppDelegate.swift */,
+				3C9DDDC220AB7C6500D72ABE /* Module */,
 				3C9DDDA120AA13BB00D72ABE /* ViewController.swift */,
 				3C9DDDA320AA13BB00D72ABE /* Main.storyboard */,
 				3C9DDDA920AA13BC00D72ABE /* Assets.xcassets */,
@@ -97,6 +106,41 @@
 				3C9DDDB920AA13BD00D72ABE /* Info.plist */,
 			);
 			path = "My fav songsTests";
+			sourceTree = "<group>";
+		};
+		3C9DDDC220AB7C6500D72ABE /* Module */ = {
+			isa = PBXGroup;
+			children = (
+				3C9DDDCA20AB884F00D72ABE /* SongsTableViewCell */,
+				3C9DDDC520AB7CB000D72ABE /* SavedSongs */,
+				3C9DDDC320AB7C6A00D72ABE /* SongsSearch */,
+			);
+			path = Module;
+			sourceTree = "<group>";
+		};
+		3C9DDDC320AB7C6A00D72ABE /* SongsSearch */ = {
+			isa = PBXGroup;
+			children = (
+				3C9DDDC620AB7CCB00D72ABE /* SongsSearchViewController.swift */,
+			);
+			path = SongsSearch;
+			sourceTree = "<group>";
+		};
+		3C9DDDC520AB7CB000D72ABE /* SavedSongs */ = {
+			isa = PBXGroup;
+			children = (
+				3C9DDDC820AB7CD900D72ABE /* SavedSongsViewController.swift */,
+			);
+			path = SavedSongs;
+			sourceTree = "<group>";
+		};
+		3C9DDDCA20AB884F00D72ABE /* SongsTableViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				3C9DDDCB20AB887200D72ABE /* SongCell.xib */,
+				3C9DDDCD20AB8B8E00D72ABE /* SongTableViewCell.swift */,
+			);
+			path = SongsTableViewCell;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -180,6 +224,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3C9DDDCC20AB887200D72ABE /* SongCell.xib in Resources */,
 				3C9DDDAD20AA13BC00D72ABE /* LaunchScreen.storyboard in Resources */,
 				3C9DDDAA20AA13BC00D72ABE /* Assets.xcassets in Resources */,
 				3C9DDDA520AA13BB00D72ABE /* Main.storyboard in Resources */,
@@ -200,7 +245,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3C9DDDCE20AB8B8E00D72ABE /* SongTableViewCell.swift in Sources */,
 				3C9DDDA220AA13BB00D72ABE /* ViewController.swift in Sources */,
+				3C9DDDC920AB7CD900D72ABE /* SavedSongsViewController.swift in Sources */,
+				3C9DDDC720AB7CCB00D72ABE /* SongsSearchViewController.swift in Sources */,
 				3C9DDDA820AA13BB00D72ABE /* My_fav_songs.xcdatamodeld in Sources */,
 				3C9DDDA020AA13BB00D72ABE /* AppDelegate.swift in Sources */,
 			);
