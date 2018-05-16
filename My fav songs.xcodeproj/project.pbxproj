@@ -18,6 +18,9 @@
 		3C9DDDC920AB7CD900D72ABE /* SavedSongsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C9DDDC820AB7CD900D72ABE /* SavedSongsViewController.swift */; };
 		3C9DDDCC20AB887200D72ABE /* SongCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3C9DDDCB20AB887200D72ABE /* SongCell.xib */; };
 		3C9DDDCE20AB8B8E00D72ABE /* SongTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C9DDDCD20AB8B8E00D72ABE /* SongTableViewCell.swift */; };
+		3CBFFAB920ACCF3700136178 /* WebService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CBFFAB820ACCF3700136178 /* WebService.swift */; };
+		3CBFFABC20ACD6F100136178 /* Song.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CBFFABB20ACD6F100136178 /* Song.swift */; };
+		3CBFFABE20ACD89400136178 /* ResultData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CBFFABD20ACD89400136178 /* ResultData.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -46,6 +49,9 @@
 		3C9DDDC820AB7CD900D72ABE /* SavedSongsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedSongsViewController.swift; sourceTree = "<group>"; };
 		3C9DDDCB20AB887200D72ABE /* SongCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SongCell.xib; sourceTree = "<group>"; };
 		3C9DDDCD20AB8B8E00D72ABE /* SongTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongTableViewCell.swift; sourceTree = "<group>"; };
+		3CBFFAB820ACCF3700136178 /* WebService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebService.swift; sourceTree = "<group>"; };
+		3CBFFABB20ACD6F100136178 /* Song.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Song.swift; sourceTree = "<group>"; };
+		3CBFFABD20ACD89400136178 /* ResultData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultData.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -88,6 +94,8 @@
 			isa = PBXGroup;
 			children = (
 				3C9DDD9F20AA13BB00D72ABE /* AppDelegate.swift */,
+				3CBFFABA20ACD6D100136178 /* Model */,
+				3CBFFAB720ACCF0300136178 /* Service */,
 				3C9DDDC220AB7C6500D72ABE /* Module */,
 				3C9DDDA120AA13BB00D72ABE /* ViewController.swift */,
 				3C9DDDA320AA13BB00D72ABE /* Main.storyboard */,
@@ -141,6 +149,23 @@
 				3C9DDDCD20AB8B8E00D72ABE /* SongTableViewCell.swift */,
 			);
 			path = SongsTableViewCell;
+			sourceTree = "<group>";
+		};
+		3CBFFAB720ACCF0300136178 /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				3CBFFAB820ACCF3700136178 /* WebService.swift */,
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
+		3CBFFABA20ACD6D100136178 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				3CBFFABB20ACD6F100136178 /* Song.swift */,
+				3CBFFABD20ACD89400136178 /* ResultData.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -247,10 +272,13 @@
 			files = (
 				3C9DDDCE20AB8B8E00D72ABE /* SongTableViewCell.swift in Sources */,
 				3C9DDDA220AA13BB00D72ABE /* ViewController.swift in Sources */,
+				3CBFFAB920ACCF3700136178 /* WebService.swift in Sources */,
 				3C9DDDC920AB7CD900D72ABE /* SavedSongsViewController.swift in Sources */,
 				3C9DDDC720AB7CCB00D72ABE /* SongsSearchViewController.swift in Sources */,
 				3C9DDDA820AA13BB00D72ABE /* My_fav_songs.xcdatamodeld in Sources */,
 				3C9DDDA020AA13BB00D72ABE /* AppDelegate.swift in Sources */,
+				3CBFFABC20ACD6F100136178 /* Song.swift in Sources */,
+				3CBFFABE20ACD89400136178 /* ResultData.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
