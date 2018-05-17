@@ -11,9 +11,9 @@
 		3C0095FC20ADEF1B0017E6A6 /* SongsSearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C0095FB20ADEF1B0017E6A6 /* SongsSearchViewModel.swift */; };
 		3C0095FF20ADFC010017E6A6 /* UIImageViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C0095FE20ADFC010017E6A6 /* UIImageViewExtension.swift */; };
 		3C00960120AE29FD0017E6A6 /* CoreDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C00960020AE29FD0017E6A6 /* CoreDataService.swift */; };
-		3C00960820AE320D0017E6A6 /* KCHModalStatus.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3C00960720AE32020017E6A6 /* KCHModalStatus.framework */; };
-		3C00960920AE320D0017E6A6 /* KCHModalStatus.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 3C00960720AE32020017E6A6 /* KCHModalStatus.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		3C00961020AE35850017E6A6 /* saveIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 3C00960F20AE35850017E6A6 /* saveIcon.png */; };
+		3C00961720AE37210017E6A6 /* KCHModalStatus.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3C00961620AE37180017E6A6 /* KCHModalStatus.framework */; };
+		3C00961820AE37210017E6A6 /* KCHModalStatus.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 3C00961620AE37180017E6A6 /* KCHModalStatus.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		3C9DDDA020AA13BB00D72ABE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C9DDD9F20AA13BB00D72ABE /* AppDelegate.swift */; };
 		3C9DDDA220AA13BB00D72ABE /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C9DDDA120AA13BB00D72ABE /* ViewController.swift */; };
 		3C9DDDA520AA13BB00D72ABE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3C9DDDA320AA13BB00D72ABE /* Main.storyboard */; };
@@ -31,16 +31,16 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		3C00960620AE32020017E6A6 /* PBXContainerItemProxy */ = {
+		3C00961520AE37180017E6A6 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 3C00960220AE32020017E6A6 /* KCHModalStatus.xcodeproj */;
+			containerPortal = 3C00961120AE37170017E6A6 /* KCHModalStatus.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 3C2653A920A8753E00678FF1;
 			remoteInfo = KCHModalStatus;
 		};
-		3C00960A20AE320D0017E6A6 /* PBXContainerItemProxy */ = {
+		3C00961920AE37210017E6A6 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 3C00960220AE32020017E6A6 /* KCHModalStatus.xcodeproj */;
+			containerPortal = 3C00961120AE37170017E6A6 /* KCHModalStatus.xcodeproj */;
 			proxyType = 1;
 			remoteGlobalIDString = 3C2653A820A8753E00678FF1;
 			remoteInfo = KCHModalStatus;
@@ -61,7 +61,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				3C00960920AE320D0017E6A6 /* KCHModalStatus.framework in Embed Frameworks */,
+				3C00961820AE37210017E6A6 /* KCHModalStatus.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -73,8 +73,8 @@
 		3C0095FB20ADEF1B0017E6A6 /* SongsSearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongsSearchViewModel.swift; sourceTree = "<group>"; };
 		3C0095FE20ADFC010017E6A6 /* UIImageViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageViewExtension.swift; sourceTree = "<group>"; };
 		3C00960020AE29FD0017E6A6 /* CoreDataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataService.swift; sourceTree = "<group>"; };
-		3C00960220AE32020017E6A6 /* KCHModalStatus.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = KCHModalStatus.xcodeproj; path = ../KCHModalStatus/KCHModalStatus.xcodeproj; sourceTree = "<group>"; };
 		3C00960F20AE35850017E6A6 /* saveIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = saveIcon.png; sourceTree = "<group>"; };
+		3C00961120AE37170017E6A6 /* KCHModalStatus.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = KCHModalStatus.xcodeproj; sourceTree = "<group>"; };
 		3C9DDD9C20AA13BB00D72ABE /* My fav songs.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "My fav songs.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3C9DDD9F20AA13BB00D72ABE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3C9DDDA120AA13BB00D72ABE /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -100,7 +100,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3C00960820AE320D0017E6A6 /* KCHModalStatus.framework in Frameworks */,
+				3C00961720AE37210017E6A6 /* KCHModalStatus.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -122,14 +122,6 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
-		3C00960320AE32020017E6A6 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				3C00960720AE32020017E6A6 /* KCHModalStatus.framework */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
 		3C00960E20AE35710017E6A6 /* Icons */ = {
 			isa = PBXGroup;
 			children = (
@@ -138,10 +130,18 @@
 			path = Icons;
 			sourceTree = "<group>";
 		};
+		3C00961220AE37170017E6A6 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				3C00961620AE37180017E6A6 /* KCHModalStatus.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		3C9DDD9320AA13BB00D72ABE = {
 			isa = PBXGroup;
 			children = (
-				3C00960220AE32020017E6A6 /* KCHModalStatus.xcodeproj */,
+				3C00961120AE37170017E6A6 /* KCHModalStatus.xcodeproj */,
 				3C9DDD9E20AA13BB00D72ABE /* My fav songs */,
 				3C9DDDB620AA13BD00D72ABE /* My fav songsTests */,
 				3C9DDD9D20AA13BB00D72ABE /* Products */,
@@ -255,7 +255,7 @@
 			buildRules = (
 			);
 			dependencies = (
-				3C00960B20AE320D0017E6A6 /* PBXTargetDependency */,
+				3C00961A20AE37210017E6A6 /* PBXTargetDependency */,
 			);
 			name = "My fav songs";
 			productName = "My fav songs";
@@ -312,8 +312,8 @@
 			projectDirPath = "";
 			projectReferences = (
 				{
-					ProductGroup = 3C00960320AE32020017E6A6 /* Products */;
-					ProjectRef = 3C00960220AE32020017E6A6 /* KCHModalStatus.xcodeproj */;
+					ProductGroup = 3C00961220AE37170017E6A6 /* Products */;
+					ProjectRef = 3C00961120AE37170017E6A6 /* KCHModalStatus.xcodeproj */;
 				},
 			);
 			projectRoot = "";
@@ -325,11 +325,11 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		3C00960720AE32020017E6A6 /* KCHModalStatus.framework */ = {
+		3C00961620AE37180017E6A6 /* KCHModalStatus.framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.framework;
 			path = KCHModalStatus.framework;
-			remoteRef = 3C00960620AE32020017E6A6 /* PBXContainerItemProxy */;
+			remoteRef = 3C00961520AE37180017E6A6 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
@@ -388,10 +388,10 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		3C00960B20AE320D0017E6A6 /* PBXTargetDependency */ = {
+		3C00961A20AE37210017E6A6 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = KCHModalStatus;
-			targetProxy = 3C00960A20AE320D0017E6A6 /* PBXContainerItemProxy */;
+			targetProxy = 3C00961920AE37210017E6A6 /* PBXContainerItemProxy */;
 		};
 		3C9DDDB520AA13BD00D72ABE /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;

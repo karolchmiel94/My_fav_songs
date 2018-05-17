@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="KCHModalStatusView" customModule="KCHModalStatus" customModuleProvider="target">
+            <connections>
+                <outlet property="headlineLabel" destination="bro-Mu-3qc" id="dSt-gX-8bh"/>
+                <outlet property="statusImage" destination="bcU-6X-z32" id="tsc-r0-QwO"/>
+                <outlet property="subheadLabel" destination="dLP-kr-WPP" id="X5v-fO-Tca"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <visualEffectView opaque="NO" alpha="0.80000000000000004" contentMode="scaleToFill" id="pw5-hj-XQC">
+            <rect key="frame" x="0.0" y="0.0" width="230" height="230"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="xWV-dw-SND">
+                <rect key="frame" x="0.0" y="0.0" width="230" height="230"/>
+                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="bcU-6X-z32">
+                        <rect key="frame" x="50" y="15" width="130" height="130"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="130" id="9iD-bL-Zka"/>
+                            <constraint firstAttribute="width" constant="130" id="H08-BX-8Sy"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Headline" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bro-Mu-3qc">
+                        <rect key="frame" x="20" y="160" width="190" height="21"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Description which is way too long to fit in one line" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dLP-kr-WPP">
+                        <rect key="frame" x="15" y="191" width="200" height="31.5"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="dLP-kr-WPP" firstAttribute="leading" secondItem="xWV-dw-SND" secondAttribute="leading" constant="15" id="APb-1Z-7SA"/>
+                    <constraint firstAttribute="trailing" secondItem="bro-Mu-3qc" secondAttribute="trailing" constant="20" id="DUt-gy-Ula"/>
+                    <constraint firstItem="bro-Mu-3qc" firstAttribute="leading" secondItem="xWV-dw-SND" secondAttribute="leading" constant="20" id="JS2-Fc-mrg"/>
+                    <constraint firstItem="bcU-6X-z32" firstAttribute="centerX" secondItem="xWV-dw-SND" secondAttribute="centerX" id="Kbw-xn-Wd0"/>
+                    <constraint firstItem="dLP-kr-WPP" firstAttribute="top" secondItem="bro-Mu-3qc" secondAttribute="bottom" constant="10" id="SOR-bP-RM9"/>
+                    <constraint firstItem="bro-Mu-3qc" firstAttribute="top" secondItem="bcU-6X-z32" secondAttribute="bottom" constant="15" id="UFA-Gw-4Lo"/>
+                    <constraint firstItem="bcU-6X-z32" firstAttribute="top" secondItem="xWV-dw-SND" secondAttribute="top" constant="15" id="k6D-Tx-nAx"/>
+                    <constraint firstAttribute="trailing" secondItem="dLP-kr-WPP" secondAttribute="trailing" constant="15" id="sPB-4H-DZo"/>
+                </constraints>
+            </view>
+            <blurEffect style="light"/>
+            <point key="canvasLocation" x="202.5" y="-581"/>
+        </visualEffectView>
+    </objects>
+</document>
