@@ -94,14 +94,7 @@ extension SongsSearchViewModel {
         coreDataService.saveSong(song, onSuccess: { (isSuccess) in
             self.savingSong = false
         }) { (error) in
-            print("Coś się zesrało")
+            print("Cannot save song")
         }
     }
-}
-
-struct SongListCellViewModel {
-    let artistNameText: String
-    let songTitleText: String
-    let artworkUrl: String
-    let genreText: String
 }

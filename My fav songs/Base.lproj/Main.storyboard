@@ -19,7 +19,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Add songs to favourites so they will always be with you!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="61P-Ze-Yhb">
-                                <rect key="frame" x="-24" y="323.5" width="423" height="20.5"/>
+                                <rect key="frame" x="20" y="313.5" width="335" height="41"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -37,21 +37,34 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                 </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="NB9-QL-NY0" id="fcl-ie-bII"/>
+                                    <outlet property="delegate" destination="NB9-QL-NY0" id="kYo-yK-ra5"/>
+                                </connections>
                             </tableView>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="LoA-k3-baE">
+                                <rect key="frame" x="177" y="323" width="20" height="20"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="61P-Ze-Yhb" firstAttribute="leading" secondItem="kgk-GJ-VBD" secondAttribute="leading" constant="20" id="8oN-4m-UtU"/>
                             <constraint firstItem="ZPW-4C-tCu" firstAttribute="trailing" secondItem="p0c-8z-g9A" secondAttribute="trailing" id="8xv-0q-0Oe"/>
-                            <constraint firstItem="61P-Ze-Yhb" firstAttribute="centerX" secondItem="kgk-GJ-VBD" secondAttribute="centerX" id="SrK-AM-ALG"/>
+                            <constraint firstItem="LoA-k3-baE" firstAttribute="centerY" secondItem="kgk-GJ-VBD" secondAttribute="centerY" id="Y37-hI-Q1e"/>
                             <constraint firstItem="p0c-8z-g9A" firstAttribute="leading" secondItem="ZPW-4C-tCu" secondAttribute="leading" id="ZVb-w4-JCn"/>
                             <constraint firstItem="p0c-8z-g9A" firstAttribute="top" secondItem="ZPW-4C-tCu" secondAttribute="top" id="caJ-pq-JT6"/>
+                            <constraint firstAttribute="trailing" secondItem="61P-Ze-Yhb" secondAttribute="trailing" constant="20" id="cg1-lj-PSN"/>
+                            <constraint firstItem="LoA-k3-baE" firstAttribute="centerX" secondItem="kgk-GJ-VBD" secondAttribute="centerX" id="lVf-2o-wVX"/>
                             <constraint firstItem="61P-Ze-Yhb" firstAttribute="centerY" secondItem="kgk-GJ-VBD" secondAttribute="centerY" id="uIj-g6-af1"/>
                             <constraint firstItem="ZPW-4C-tCu" firstAttribute="bottom" secondItem="p0c-8z-g9A" secondAttribute="bottom" id="ubg-Bw-6jb"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="ZPW-4C-tCu"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Favourite Songs" id="EYf-Xv-liE"/>
+                    <navigationItem key="navigationItem" title="Favourite Songs" id="EYf-Xv-liE">
+                        <barButtonItem key="rightBarButtonItem" title="Filter" id="egB-ms-1kE"/>
+                    </navigationItem>
                     <connections>
+                        <outlet property="activityIndicator" destination="LoA-k3-baE" id="7be-vO-5qq"/>
                         <outlet property="noSongsLabel" destination="61P-Ze-Yhb" id="cyl-1g-CqQ"/>
                         <outlet property="songsTableView" destination="p0c-8z-g9A" id="ghQ-RF-TEg"/>
                     </connections>
@@ -86,8 +99,8 @@
                                     <outlet property="delegate" destination="ixO-g8-hds" id="gdQ-dB-mPY"/>
                                 </connections>
                             </tableView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Search for some songs" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RRB-Qg-JCy">
-                                <rect key="frame" x="99" y="323" width="176" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Search for some songs" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RRB-Qg-JCy">
+                                <rect key="frame" x="20" y="323" width="335" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -104,10 +117,11 @@
                         <constraints>
                             <constraint firstItem="lAq-az-19p" firstAttribute="trailing" secondItem="ZVe-cJ-uBU" secondAttribute="trailing" id="3iB-uu-P07"/>
                             <constraint firstItem="lAq-az-19p" firstAttribute="bottom" secondItem="ZVe-cJ-uBU" secondAttribute="bottom" id="9gm-XF-gsg"/>
+                            <constraint firstItem="RRB-Qg-JCy" firstAttribute="leading" secondItem="lAq-az-19p" secondAttribute="leading" constant="20" id="Coy-tX-h0y"/>
+                            <constraint firstItem="lAq-az-19p" firstAttribute="trailing" secondItem="RRB-Qg-JCy" secondAttribute="trailing" constant="20" id="DYl-q1-Cgx"/>
                             <constraint firstItem="Soq-LY-N42" firstAttribute="top" secondItem="lAq-az-19p" secondAttribute="top" id="JfB-5Y-Kja"/>
                             <constraint firstItem="Soq-LY-N42" firstAttribute="leading" secondItem="lAq-az-19p" secondAttribute="leading" id="MYz-Va-8jR"/>
                             <constraint firstItem="woI-72-VGc" firstAttribute="centerY" secondItem="jdc-EC-GLw" secondAttribute="centerY" id="XX4-cr-kd9"/>
-                            <constraint firstItem="RRB-Qg-JCy" firstAttribute="centerX" secondItem="jdc-EC-GLw" secondAttribute="centerX" id="b86-ME-vku"/>
                             <constraint firstItem="RRB-Qg-JCy" firstAttribute="centerY" secondItem="jdc-EC-GLw" secondAttribute="centerY" id="fNG-do-sfG"/>
                             <constraint firstItem="Soq-LY-N42" firstAttribute="trailing" secondItem="lAq-az-19p" secondAttribute="trailing" id="gy5-Pc-mpf"/>
                             <constraint firstItem="woI-72-VGc" firstAttribute="centerX" secondItem="jdc-EC-GLw" secondAttribute="centerX" id="xHF-PP-IMa"/>
