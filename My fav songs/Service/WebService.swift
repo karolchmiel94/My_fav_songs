@@ -8,11 +8,16 @@
 
 import Foundation
 
-class WebService {
+protocol APIProtocol {
+    func fetchSongs(query: String, onSuccess: @escaping(ResultData) -> Void, onFailure: @escaping(Error) -> Void)
+}
+
+class WebService: APIProtocol {
     
     static let HTTP_SCHEME = "https"
     static let HTTP_HOST = "itunes.apple.com"
     static let searchEndPoint = "/search"
+    static let RESULT_NUMBER = 25
     
     static let sharedInstance = WebService()
     
@@ -24,11 +29,13 @@ class WebService {
         return urlComponents
     }
     
-    func getSongsWith(query: String, onSuccess: @escaping(ResultData) -> Void, onFailure: @escaping(Error) -> Void){
+    func fetchSongs(query: String, onSuccess: @escaping(ResultData) -> Void, onFailure: @escaping(Error) -> Void){
         var urlComponents = createUrlComponents()
         let songQuery = URLQueryItem(name: "term", value: query)
-        urlComponents.queryItems = [songQuery]
-        let request: NSMutableURLRequest = NSMutableURLRequest(url: urlComponents.url!)
+        let limitQuery = URLQueryItem(name: "limit", value: String(WebService.RESULT_NUMBER))
+        let mediumQuery = URLQueryItem(name: "medium", value: "music")
+        urlComponents.queryItems = [songQuery, limitQuery, mediumQuery]
+        let request = NSMutableURLRequest(url: urlComponents.url!)
         request.httpMethod = "GET"
         let session = URLSession.shared
         let task = session.dataTask(with: request as URLRequest, completionHandler: {data, response, error -> Void in

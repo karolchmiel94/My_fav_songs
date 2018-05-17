@@ -68,15 +68,16 @@
                             <constraint firstAttribute="height" constant="80" id="zi2-Rh-Sg9"/>
                         </constraints>
                     </stackView>
-                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AUZ-eN-Fwk">
-                        <rect key="frame" x="335" y="36" width="34" height="30"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AUZ-eN-Fwk">
+                        <rect key="frame" x="331" y="36" width="34" height="30"/>
                         <state key="normal" title="Save"/>
                     </button>
                 </subviews>
                 <constraints>
                     <constraint firstItem="AGo-md-lzA" firstAttribute="top" secondItem="N9M-2k-dLZ" secondAttribute="topMargin" id="6Be-sN-m0b"/>
+                    <constraint firstItem="AUZ-eN-Fwk" firstAttribute="centerY" secondItem="pVp-2S-CSu" secondAttribute="centerY" id="6c8-zi-Sjg"/>
                     <constraint firstItem="pVp-2S-CSu" firstAttribute="top" secondItem="AGo-md-lzA" secondAttribute="top" id="AjS-UZ-ZmQ"/>
+                    <constraint firstAttribute="trailing" secondItem="AUZ-eN-Fwk" secondAttribute="trailing" constant="10" id="JcU-NB-5MW"/>
                     <constraint firstItem="pVp-2S-CSu" firstAttribute="leading" secondItem="AGo-md-lzA" secondAttribute="trailing" constant="10" id="L0b-Cl-TGW"/>
                     <constraint firstItem="AGo-md-lzA" firstAttribute="leading" secondItem="N9M-2k-dLZ" secondAttribute="leadingMargin" id="UWu-Bz-sEq"/>
                     <constraint firstAttribute="trailingMargin" secondItem="pVp-2S-CSu" secondAttribute="trailing" constant="30" id="fUm-it-XGa"/>
