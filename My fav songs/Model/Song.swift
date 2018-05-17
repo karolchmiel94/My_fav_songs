@@ -14,3 +14,19 @@ struct Song: Decodable {
     let artworkUrl100: String
     let primaryGenreName: String
 }
+
+enum SongKeys {
+    case artistName, trackName, artworkUrl100, primaryGenreName
+    func stringValue() -> String {
+        switch self {
+        case .artistName:
+            return "artistName"
+        case .trackName:
+            return "trackName"
+        case .artworkUrl100:
+            return "artworkUrl100"
+        case .primaryGenreName:
+            return "primaryGenreName"
+        }
+    }
+}

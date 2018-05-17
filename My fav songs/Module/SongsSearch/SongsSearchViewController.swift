@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import KCHModalStatus
 
 class SongsSearchViewController: UIViewController {
 
@@ -16,7 +17,7 @@ class SongsSearchViewController: UIViewController {
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
     lazy var viewModel: SongsSearchViewModel = {
-        return SongsSearchViewModel()
+        return SongsSearchViewModel(appDelegate: UIApplication.shared.delegate as! AppDelegate)
     }()
     
     override func viewDidLoad() {
@@ -63,6 +64,14 @@ class SongsSearchViewController: UIViewController {
             }
         }
         
+        viewModel.saveSongModal = { [weak self] in
+            DispatchQueue.main.async {
+                let modalView = KCHModalStatusView(frame: (self?.view.frame)!)
+                modalView.set(image: UIImage(named: "saveIcon")!)
+                modalView.set(title: "Saving song")
+                self?.view.addSubview(modalView)
+            }
+        }
     }
 
     func showAlert(with message: String) {

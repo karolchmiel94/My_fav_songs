@@ -12,6 +12,7 @@ class SongsSearchViewModel {
     
     private var data: ResultData
     let apiService: APIProtocol
+    let coreDataService: CoreDataProtocol
     
     private var cellViewModels: [SongListCellViewModel] = [SongListCellViewModel]() {
         didSet {
@@ -31,6 +32,12 @@ class SongsSearchViewModel {
         }
     }
     
+    var savingSong: Bool = false {
+        didSet {
+            self.saveSongModal?()
+        }
+    }
+    
     var numberOfCells: Int {
         return cellViewModels.count
     }
@@ -40,9 +47,11 @@ class SongsSearchViewModel {
     var reloadTableViewClosure: (()->())?
     var showAlertClosure: (()->())?
     var updateLoadingStatus: (()->())?
+    var saveSongModal: (()->())?
     
-    init(apiService: APIProtocol = WebService()) {
+    init(apiService: APIProtocol = WebService(), appDelegate: AppDelegate) {
         self.apiService = apiService
+        self.coreDataService = CoreDataService(with: appDelegate)
         self.data = ResultData(resultCount: Int(), results: [Song]())
     }
     
@@ -70,7 +79,7 @@ class SongsSearchViewModel {
     private func processFetchedSongs(_ data: ResultData) {
         self.data = data
         var vms = [SongListCellViewModel]()
-        for song in data.results! {
+        for song in data.results {
             vms.append(createCellViewModel(song: song))
         }
         self.cellViewModels = vms
@@ -79,10 +88,14 @@ class SongsSearchViewModel {
 
 extension SongsSearchViewModel {
     func saveSong(at indexPath: Int) {
-        let song = self.data.results![indexPath]
+        let song = self.data.results[indexPath]
         self.selectedSong = song
-        print(song.artistName + ": " + song.trackName + " saved.")
-        // Save song in local database
+        self.savingSong = true
+        coreDataService.saveSong(song, onSuccess: { (isSuccess) in
+            self.savingSong = false
+        }) { (error) in
+            print("Coś się zesrało")
+        }
     }
 }
 

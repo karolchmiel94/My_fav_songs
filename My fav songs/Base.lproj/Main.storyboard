@@ -19,7 +19,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Add songs to favourites so they will always be with you!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="61P-Ze-Yhb">
-                                <rect key="frame" x="15" y="313" width="345" height="41"/>
+                                <rect key="frame" x="-24" y="323.5" width="423" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -42,11 +42,9 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="ZPW-4C-tCu" firstAttribute="trailing" secondItem="p0c-8z-g9A" secondAttribute="trailing" id="8xv-0q-0Oe"/>
-                            <constraint firstItem="61P-Ze-Yhb" firstAttribute="leading" secondItem="ZPW-4C-tCu" secondAttribute="leading" constant="15" id="Ibm-7J-XBy"/>
                             <constraint firstItem="61P-Ze-Yhb" firstAttribute="centerX" secondItem="kgk-GJ-VBD" secondAttribute="centerX" id="SrK-AM-ALG"/>
                             <constraint firstItem="p0c-8z-g9A" firstAttribute="leading" secondItem="ZPW-4C-tCu" secondAttribute="leading" id="ZVb-w4-JCn"/>
                             <constraint firstItem="p0c-8z-g9A" firstAttribute="top" secondItem="ZPW-4C-tCu" secondAttribute="top" id="caJ-pq-JT6"/>
-                            <constraint firstItem="ZPW-4C-tCu" firstAttribute="trailing" secondItem="61P-Ze-Yhb" secondAttribute="trailing" constant="15" id="eYn-KU-nEf"/>
                             <constraint firstItem="61P-Ze-Yhb" firstAttribute="centerY" secondItem="kgk-GJ-VBD" secondAttribute="centerY" id="uIj-g6-af1"/>
                             <constraint firstItem="ZPW-4C-tCu" firstAttribute="bottom" secondItem="p0c-8z-g9A" secondAttribute="bottom" id="ubg-Bw-6jb"/>
                         </constraints>
