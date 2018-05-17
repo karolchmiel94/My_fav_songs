@@ -22,8 +22,8 @@ class SavedSongsViewController: UIViewController {
     }
 
     override func viewWillAppear(_ animated: Bool) {
-        WebService.sharedInstance.getSongsWith(query: "Meek, oh why", onSuccess: { (data) in
-            print("succes")
+        WebService.sharedInstance.fetchSongs(query: "Meek, oh why", onSuccess: { (data) in
+            print("success")
         }) { (error) in
             print(error)
         }
