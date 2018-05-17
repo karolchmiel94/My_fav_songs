@@ -10,5 +10,5 @@ import Foundation
 
 struct ResultData: Decodable {
     let resultCount: Int
-    let results: [Song]
+    let results: [Song]?
 }

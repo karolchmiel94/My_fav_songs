@@ -64,13 +64,13 @@ class SongsSearchViewModel {
         return SongListCellViewModel(artistNameText: song.artistName,
                                      songTitleText: song.trackName,
                                      artworkUrl: song.artworkUrl100,
-                                     genreText: song.primaryGenreName)
+                                     genreText: "Genre: \(song.primaryGenreName)")
     }
     
     private func processFetchedSongs(_ data: ResultData) {
         self.data = data
         var vms = [SongListCellViewModel]()
-        for song in data.results {
+        for song in data.results! {
             vms.append(createCellViewModel(song: song))
         }
         self.cellViewModels = vms
@@ -78,8 +78,8 @@ class SongsSearchViewModel {
 }
 
 extension SongsSearchViewModel {
-    func saveSongs(at indexPath: IndexPath) {
-        let song = self.data.results[indexPath.row]
+    func saveSong(at indexPath: Int) {
+        let song = self.data.results![indexPath]
         self.selectedSong = song
         print(song.artistName + ": " + song.trackName + " saved.")
         // Save song in local database

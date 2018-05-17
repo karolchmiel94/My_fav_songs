@@ -98,6 +98,9 @@
                                 <rect key="frame" x="0.0" y="116" width="375" height="56"/>
                                 <textInputTraits key="textInputTraits"/>
                             </searchBar>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="woI-72-VGc">
+                                <rect key="frame" x="177" y="323" width="20" height="20"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -105,9 +108,11 @@
                             <constraint firstItem="lAq-az-19p" firstAttribute="bottom" secondItem="ZVe-cJ-uBU" secondAttribute="bottom" id="9gm-XF-gsg"/>
                             <constraint firstItem="Soq-LY-N42" firstAttribute="top" secondItem="lAq-az-19p" secondAttribute="top" id="JfB-5Y-Kja"/>
                             <constraint firstItem="Soq-LY-N42" firstAttribute="leading" secondItem="lAq-az-19p" secondAttribute="leading" id="MYz-Va-8jR"/>
+                            <constraint firstItem="woI-72-VGc" firstAttribute="centerY" secondItem="jdc-EC-GLw" secondAttribute="centerY" id="XX4-cr-kd9"/>
                             <constraint firstItem="RRB-Qg-JCy" firstAttribute="centerX" secondItem="jdc-EC-GLw" secondAttribute="centerX" id="b86-ME-vku"/>
                             <constraint firstItem="RRB-Qg-JCy" firstAttribute="centerY" secondItem="jdc-EC-GLw" secondAttribute="centerY" id="fNG-do-sfG"/>
                             <constraint firstItem="Soq-LY-N42" firstAttribute="trailing" secondItem="lAq-az-19p" secondAttribute="trailing" id="gy5-Pc-mpf"/>
+                            <constraint firstItem="woI-72-VGc" firstAttribute="centerX" secondItem="jdc-EC-GLw" secondAttribute="centerX" id="xHF-PP-IMa"/>
                             <constraint firstItem="ZVe-cJ-uBU" firstAttribute="top" secondItem="Soq-LY-N42" secondAttribute="bottom" id="yGj-Dx-77e"/>
                             <constraint firstItem="ZVe-cJ-uBU" firstAttribute="leading" secondItem="lAq-az-19p" secondAttribute="leading" id="yZe-Q3-9mP"/>
                         </constraints>
@@ -115,6 +120,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="Search" id="pOe-s6-Fbs"/>
                     <connections>
+                        <outlet property="activityIndicator" destination="woI-72-VGc" id="iW1-7T-ieX"/>
                         <outlet property="emptyListLabel" destination="RRB-Qg-JCy" id="gZk-k6-9jH"/>
                         <outlet property="searchBar" destination="Soq-LY-N42" id="sr9-Fb-kaf"/>
                         <outlet property="songsTableView" destination="ZVe-cJ-uBU" id="a3O-K9-8ca"/>

@@ -13,6 +13,7 @@ class SongsSearchViewController: UIViewController {
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var emptyListLabel: UILabel!
     @IBOutlet weak var songsTableView: UITableView!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
     lazy var viewModel: SongsSearchViewModel = {
         return SongsSearchViewModel()
@@ -20,14 +21,14 @@ class SongsSearchViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.ź
         initView()
         initVM()
     }
     
     func initView() {
-        searchBar.delegate = self as? UISearchBarDelegate
+        searchBar.delegate = self
         songsTableView.isHidden = true
+        activityIndicator.isHidden = true
     }
     
     func initVM() {
@@ -43,11 +44,15 @@ class SongsSearchViewController: UIViewController {
             DispatchQueue.main.async {
                 let isLoading = self?.viewModel.isLoading ?? false
                 if isLoading {
-                    self?.emptyListLabel.isHidden = false
+                    self?.emptyListLabel.isHidden = true
                     self?.songsTableView.isHidden = true
+                    self?.activityIndicator.isHidden = false
+                    self?.activityIndicator.startAnimating()
                 } else {
                     self?.emptyListLabel.isHidden = true
                     self?.songsTableView.isHidden = false
+                    self?.activityIndicator.isHidden = true
+                    self?.activityIndicator.stopAnimating()
                 }
             }
         }
@@ -82,11 +87,18 @@ extension SongsSearchViewController: UITableViewDataSource, UITableViewDelegate 
         songsTableView.register(UINib(nibName: "SongCell", bundle: nil), forCellReuseIdentifier: "songCell")
         let cell = tableView.dequeueReusableCell(withIdentifier: "songCell") as! SongTableViewCell
         let cellVM = viewModel.getCellViewModel(at: indexPath)
+        
         cell.artistNameLabel.text = cellVM.artistNameText
         cell.songTitleLabel.text = cellVM.songTitleText
         cell.songGenreLabel.text = cellVM.genreText
         cell.artworkImageView.loadImageFrom(url: cellVM.artworkUrl)
+        cell.songButton.tag = indexPath.row
+        cell.songButton.addTarget(self, action: #selector(saveSong(_:)), for: .touchUpInside)
         return cell
+    }
+    
+    @objc func saveSong(_ sender: UIButton) {
+        viewModel.saveSong(at: sender.tag)
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -98,6 +110,7 @@ extension SongsSearchViewController: UITableViewDataSource, UITableViewDelegate 
 extension SongsSearchViewController: UISearchBarDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         if (searchBar.text?.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty)! { return }
+        
         viewModel.searchForSongs(searchBar.text!)
         searchBar.resignFirstResponder()
     }
