@@ -8,20 +8,32 @@
 
 import UIKit
 
+protocol DataDelegate {
+    func filterSongsBy(_ songDataType: SongKeys, _ ascending: Bool)
+    func searchSongBy(_ text: String, _ songDataType: SongKeys)
+}
+
 class SongsFiltersViewController: UIViewController {
     
-    let pickerComponents = [SongKeys.artistName.prettyDescription(), SongKeys.trackName.prettyDescription(), SongKeys.primaryGenreName.prettyDescription()]
+    let pickerComponents = [SongKeys.artistName,
+                            SongKeys.trackName,
+                            SongKeys.primaryGenreName]
+    var selectedKey: SongKeys?
+    var delegate: DataDelegate?
     
+    @IBOutlet weak var mainView: UIView!
     @IBOutlet weak var filterView: UIStackView!
     @IBOutlet weak var searchTextField: UITextField!
     @IBOutlet weak var searchButton: UIButton!
     @IBOutlet weak var filterButton: UIButton!
     @IBOutlet weak var ascendingSwitch: UISwitch!
+    @IBOutlet weak var pickerView: UIPickerView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        self.mainView.roundCorners(with: 10.0)
+        selectedKey = pickerComponents[0]
+        searchTextField.delegate = self
     }
 
     @IBAction func filterButtonAction(_ sender: Any) {
@@ -44,6 +56,14 @@ class SongsFiltersViewController: UIViewController {
     }
     
     @IBAction func confirmAction(_ sender: Any) {
+        if searchTextField.alpha == 1.0 {
+            if let text = searchTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines) {
+                if text.isEmpty { return }
+                delegate?.searchSongBy(text, selectedKey!)
+            }
+        } else {
+            delegate?.filterSongsBy(selectedKey!, ascendingSwitch.isOn)
+        }
         self.dismiss(animated: true, completion: nil)
     }
     
@@ -67,7 +87,18 @@ extension SongsFiltersViewController: UIPickerViewDelegate, UIPickerViewDataSour
     }
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return pickerComponents[row]
+        return pickerComponents[row].prettyDescription()
     }
     
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        selectedKey = pickerComponents[row]
+    }
+    
+}
+
+extension SongsFiltersViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
 }

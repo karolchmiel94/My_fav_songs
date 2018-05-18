@@ -12,7 +12,8 @@ import CoreData
 protocol CoreDataProtocol {
     func fetchSongs(onSuccess: @escaping([Song]) -> Void, onFailure: @escaping(Error) -> Void)
     func saveSong(_ song: Song, onSuccess: @escaping(Bool) -> Void, onFailure: @escaping(Error) -> Void)
-    func sortSongsBy(_ key: String, _ ascending: Bool, onSuccess: @escaping([Song]) -> Void, onFailure: @escaping(Error) -> Void)
+    func sortSongsBy(_ songDataType: SongKeys, _ ascending: Bool, onSuccess: @escaping([Song]) -> Void, onFailure: @escaping(Error) -> Void)
+    func searchSongsFor(_ key: String, _ songDataType: SongKeys, onSuccess: @escaping([Song]) -> Void, onFailure: @escaping(Error) -> Void)
     func deleteSong(_ song: Song, onSuccess: @escaping(Bool) -> Void, onFailure: @escaping(Error) -> Void)
 }
 
@@ -30,9 +31,12 @@ class CoreDataService: CoreDataProtocol {
         self.entity = NSEntityDescription.entity(forEntityName: ENTITY_NAME, in: self.context)!
     }
     
+    func fetchRequest() -> NSFetchRequest<NSManagedObject> {
+        return NSFetchRequest<NSManagedObject>(entityName: ENTITY_NAME)
+    }
     
     func fetchSongs(onSuccess: @escaping ([Song]) -> Void, onFailure: @escaping (Error) -> Void) {
-        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: ENTITY_NAME)
+        let fetchRequest = self.fetchRequest()
         do {
             let result = try context.fetch(fetchRequest)
             var songs = [Song]()
@@ -60,9 +64,9 @@ class CoreDataService: CoreDataProtocol {
         }
     }
     
-    func sortSongsBy(_ key: String, _ ascending: Bool, onSuccess: @escaping ([Song]) -> Void, onFailure: @escaping (Error) -> Void) {
-        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: ENTITY_NAME)
-        let sort = NSSortDescriptor(key: key, ascending: ascending)
+    func sortSongsBy(_ songDataType: SongKeys, _ ascending: Bool, onSuccess: @escaping ([Song]) -> Void, onFailure: @escaping (Error) -> Void) {
+        let fetchRequest = self.fetchRequest()
+        let sort = NSSortDescriptor(key: songDataType.stringValue(), ascending: ascending)
         fetchRequest.sortDescriptors = [sort]
         do {
             let result = try context.fetch(fetchRequest)
@@ -77,8 +81,24 @@ class CoreDataService: CoreDataProtocol {
         }
     }
     
+    func searchSongsFor(_ key: String, _ songDataType: SongKeys, onSuccess: @escaping ([Song]) -> Void, onFailure: @escaping (Error) -> Void) {
+        let fetchRequest = self.fetchRequest()
+        fetchRequest.predicate = NSPredicate(format: "\(songDataType.stringValue()) CONTAINS[cd] %@", key)
+        do {
+            let results = try context.fetch(fetchRequest)
+            var songs = [Song]()
+            for song in results {
+                songs.append(parseSongData(song))
+            }
+            onSuccess(songs)
+        } catch let error {
+            onFailure(error)
+        }
+    }
+    
+    
     func deleteSong(_ song: Song, onSuccess: @escaping (Bool) -> Void, onFailure: @escaping (Error) -> Void) {
-        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: ENTITY_NAME)
+        let fetchRequest = self.fetchRequest()
         let namePredicate = NSPredicate(format: "\(SongKeys.artistName.stringValue()) = %@", song.artistName)
         let titlePredicate = NSPredicate(format: "\(SongKeys.trackName.stringValue()) = %@", song.trackName)
         fetchRequest.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [namePredicate, titlePredicate])

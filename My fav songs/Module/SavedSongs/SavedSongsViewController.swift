@@ -54,8 +54,13 @@ class SavedSongsViewController: UIViewController {
                     self?.activityIndicator.isHidden = false
                     self?.activityIndicator.startAnimating()
                 } else {
-                    self?.noSongsLabel.isHidden = true
-                    self?.songsTableView.isHidden = false
+                    if (self?.viewModel.numberOfCells)! > 0 {
+                        self?.noSongsLabel.isHidden = true
+                        self?.songsTableView.isHidden = false
+                    } else {
+                        self?.noSongsLabel.isHidden = false
+                        self?.songsTableView.isHidden = true
+                    }
                     self?.activityIndicator.isHidden = true
                     self?.activityIndicator.stopAnimating()
                 }
@@ -86,6 +91,14 @@ class SavedSongsViewController: UIViewController {
                                       preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
         alert.show(self, sender: nil)
+    }
+    
+    @IBAction func showModal(_ sender: Any) {
+        let modalVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "SongsFiltersViewController") as! SongsFiltersViewController
+        modalVC.delegate = viewModel
+        modalVC.modalPresentationStyle = .overFullScreen
+        modalVC.modalTransitionStyle = .crossDissolve
+        self.present(modalVC, animated: true, completion: nil)
     }
     
     override func didReceiveMemoryWarning() {
@@ -121,4 +134,9 @@ extension SavedSongsViewController: UITableViewDelegate, UITableViewDataSource {
         return 100
     }
     
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return 1
+    }
+    
 }
+

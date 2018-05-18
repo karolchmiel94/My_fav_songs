@@ -63,7 +63,7 @@
                     <navigationItem key="navigationItem" title="Favourite Songs" id="EYf-Xv-liE">
                         <barButtonItem key="rightBarButtonItem" title="Filter" id="egB-ms-1kE">
                             <connections>
-                                <segue destination="Gcj-mR-NSQ" kind="presentation" modalPresentationStyle="overFullScreen" modalTransitionStyle="crossDissolve" id="Lac-TZ-AjF"/>
+                                <action selector="showModal:" destination="NB9-QL-NY0" id="v4e-Fz-iE0"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -149,7 +149,7 @@
         <!--Filter-->
         <scene sceneID="0Cl-9g-gPZ">
             <objects>
-                <viewController title="Filter" id="Gcj-mR-NSQ" customClass="SongsFiltersViewController" customModule="My_fav_songs" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SongsFiltersViewController" title="Filter" id="Gcj-mR-NSQ" customClass="SongsFiltersViewController" customModule="My_fav_songs" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="fTt-js-7yJ">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -204,6 +204,9 @@
                                                 </connections>
                                             </button>
                                         </subviews>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="100" id="0kp-pf-B6c"/>
+                                        </constraints>
                                     </stackView>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="e0Y-Ml-p8l">
                                         <rect key="frame" x="5" y="89" width="290" height="256"/>
@@ -290,6 +293,8 @@
                         <outlet property="ascendingSwitch" destination="UFV-D7-HwF" id="Bh2-jk-hfz"/>
                         <outlet property="filterButton" destination="eBd-4a-o4b" id="IaW-02-WbV"/>
                         <outlet property="filterView" destination="wKd-Md-xI0" id="jeG-d0-gQX"/>
+                        <outlet property="mainView" destination="yuL-zF-veV" id="Mw6-S8-hOt"/>
+                        <outlet property="pickerView" destination="EcX-yd-sE0" id="epI-wi-tfE"/>
                         <outlet property="searchButton" destination="cfB-QX-ovJ" id="whl-gi-sxV"/>
                         <outlet property="searchTextField" destination="OHp-QJ-3gr" id="1qz-hI-O4A"/>
                     </connections>

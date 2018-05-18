@@ -96,8 +96,15 @@ extension SavedSongsViewModel {
     }
     
     func sortSongsBy(_ key: String,_ ascending: Bool) {
+        
+    }
+    
+}
+
+extension SavedSongsViewModel: DataDelegate {
+    func filterSongsBy(_ songDataType: SongKeys, _ ascending: Bool) {
         self.isLoading = true
-        coreDataService.sortSongsBy(key, ascending, onSuccess: { (songs) in
+        coreDataService.sortSongsBy(songDataType, ascending, onSuccess: { (songs) in
             self.processFetchedSongs(songs)
             self.isLoading = false
         }) { (error) in
@@ -105,5 +112,14 @@ extension SavedSongsViewModel {
         }
     }
     
+    func searchSongBy(_ text: String, _ songDataType: SongKeys) {
+        self.isLoading = true
+        coreDataService.searchSongsFor(text, songDataType, onSuccess: { (songs) in
+            self.processFetchedSongs(songs)
+            self.isLoading = false
+        }) { (error) in
+            self.alertMessage = error as? String
+        }
+    }
     
 }
