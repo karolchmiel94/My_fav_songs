@@ -16,6 +16,9 @@ class SongsSearchViewController: UIViewController {
     @IBOutlet weak var songsTableView: UITableView!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
+    let CELL_ID = "songCell"
+    let CELL_NIB_NAME = "SongCell"
+    
     lazy var viewModel: SongsSearchViewModel = {
         return SongsSearchViewModel(appDelegate: UIApplication.shared.delegate as! AppDelegate)
     }()
@@ -93,8 +96,8 @@ extension SongsSearchViewController: UITableViewDataSource, UITableViewDelegate 
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        songsTableView.register(UINib(nibName: "SongCell", bundle: nil), forCellReuseIdentifier: "songCell")
-        let cell = tableView.dequeueReusableCell(withIdentifier: "songCell") as! SongTableViewCell
+        songsTableView.register(UINib(nibName: CELL_NIB_NAME, bundle: nil), forCellReuseIdentifier: CELL_ID)
+        let cell = tableView.dequeueReusableCell(withIdentifier: CELL_ID) as! SongTableViewCell
         let cellVM = viewModel.getCellViewModel(at: indexPath)
         
         cell.artistNameLabel.text = cellVM.artistNameText

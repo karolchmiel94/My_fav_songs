@@ -95,10 +95,6 @@ extension SavedSongsViewModel {
         }
     }
     
-    func sortSongsBy(_ key: String,_ ascending: Bool) {
-        
-    }
-    
 }
 
 extension SavedSongsViewModel: DataDelegate {
