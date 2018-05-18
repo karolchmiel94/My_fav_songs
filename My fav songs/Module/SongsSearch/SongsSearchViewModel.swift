@@ -94,7 +94,7 @@ extension SongsSearchViewModel {
         coreDataService.saveSong(song, onSuccess: { (isSuccess) in
             self.savingSong = false
         }) { (error) in
-            print("Cannot save song")
+            print(error)
         }
     }
 }

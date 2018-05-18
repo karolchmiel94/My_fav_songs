@@ -16,6 +16,8 @@ class SavedSongsViewController: UIViewController {
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
     let CELL_BUTTON_TEXT = "Delete"
+    let CELL_ID = "songCell"
+    let CELL_NIB_NAME = "SongCell"
     
     lazy var viewModel: SavedSongsViewModel = {
         return SavedSongsViewModel(appDelegate: UIApplication.shared.delegate as! AppDelegate)
@@ -112,8 +114,8 @@ extension SavedSongsViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        songsTableView.register(UINib(nibName: "SongCell", bundle: nil), forCellReuseIdentifier: "songCell")
-        let cell = tableView.dequeueReusableCell(withIdentifier: "songCell") as! SongTableViewCell
+        songsTableView.register(UINib(nibName: CELL_NIB_NAME, bundle: nil), forCellReuseIdentifier: CELL_ID)
+        let cell = tableView.dequeueReusableCell(withIdentifier: CELL_ID) as! SongTableViewCell
         let cellVM = viewModel.getCellViewModel(at: indexPath)
         
         cell.artistNameLabel.text = cellVM.artistNameText
