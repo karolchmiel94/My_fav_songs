@@ -17,6 +17,7 @@
 		3C56850520AE4E9900DBAA46 /* deleteIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 3C56850420AE4E9900DBAA46 /* deleteIcon.png */; };
 		3C56850820AE53AF00DBAA46 /* SongsFiltersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C56850720AE53AF00DBAA46 /* SongsFiltersViewController.swift */; };
 		3C84A52220AE705400DB8807 /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C84A52120AE705400DB8807 /* UIViewExtension.swift */; };
+		3C84A52920AE86DF00DB8807 /* SongsSearchViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C84A52820AE86DF00DB8807 /* SongsSearchViewModelTests.swift */; };
 		3C9DDDA020AA13BB00D72ABE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C9DDD9F20AA13BB00D72ABE /* AppDelegate.swift */; };
 		3C9DDDA220AA13BB00D72ABE /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C9DDDA120AA13BB00D72ABE /* ViewController.swift */; };
 		3C9DDDA520AA13BB00D72ABE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3C9DDDA320AA13BB00D72ABE /* Main.storyboard */; };
@@ -28,6 +29,7 @@
 		3C9DDDC920AB7CD900D72ABE /* SavedSongsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C9DDDC820AB7CD900D72ABE /* SavedSongsViewController.swift */; };
 		3C9DDDCC20AB887200D72ABE /* SongCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3C9DDDCB20AB887200D72ABE /* SongCell.xib */; };
 		3C9DDDCE20AB8B8E00D72ABE /* SongTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C9DDDCD20AB8B8E00D72ABE /* SongTableViewCell.swift */; };
+		3CB39E4E20AEDA90007C74F2 /* APIServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CB39E4D20AEDA90007C74F2 /* APIServiceTests.swift */; };
 		3CBFFAB920ACCF3700136178 /* WebService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CBFFAB820ACCF3700136178 /* WebService.swift */; };
 		3CBFFABC20ACD6F100136178 /* Song.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CBFFABB20ACD6F100136178 /* Song.swift */; };
 		3CBFFABE20ACD89400136178 /* ResultData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CBFFABD20ACD89400136178 /* ResultData.swift */; };
@@ -81,6 +83,7 @@
 		3C56850420AE4E9900DBAA46 /* deleteIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = deleteIcon.png; sourceTree = "<group>"; };
 		3C56850720AE53AF00DBAA46 /* SongsFiltersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongsFiltersViewController.swift; sourceTree = "<group>"; };
 		3C84A52120AE705400DB8807 /* UIViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
+		3C84A52820AE86DF00DB8807 /* SongsSearchViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongsSearchViewModelTests.swift; sourceTree = "<group>"; };
 		3C9DDD9C20AA13BB00D72ABE /* My fav songs.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "My fav songs.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3C9DDD9F20AA13BB00D72ABE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3C9DDDA120AA13BB00D72ABE /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -96,6 +99,7 @@
 		3C9DDDC820AB7CD900D72ABE /* SavedSongsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedSongsViewController.swift; sourceTree = "<group>"; };
 		3C9DDDCB20AB887200D72ABE /* SongCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SongCell.xib; sourceTree = "<group>"; };
 		3C9DDDCD20AB8B8E00D72ABE /* SongTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongTableViewCell.swift; sourceTree = "<group>"; };
+		3CB39E4D20AEDA90007C74F2 /* APIServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIServiceTests.swift; sourceTree = "<group>"; };
 		3CBFFAB820ACCF3700136178 /* WebService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebService.swift; sourceTree = "<group>"; };
 		3CBFFABB20ACD6F100136178 /* Song.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Song.swift; sourceTree = "<group>"; };
 		3CBFFABD20ACD89400136178 /* ResultData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultData.swift; sourceTree = "<group>"; };
@@ -196,6 +200,8 @@
 			isa = PBXGroup;
 			children = (
 				3C9DDDB720AA13BD00D72ABE /* My_fav_songsTests.swift */,
+				3C84A52820AE86DF00DB8807 /* SongsSearchViewModelTests.swift */,
+				3CB39E4D20AEDA90007C74F2 /* APIServiceTests.swift */,
 				3C9DDDB920AA13BD00D72ABE /* Info.plist */,
 			);
 			path = "My fav songsTests";
@@ -401,7 +407,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3CB39E4E20AEDA90007C74F2 /* APIServiceTests.swift in Sources */,
 				3C9DDDB820AA13BD00D72ABE /* My_fav_songsTests.swift in Sources */,
+				3C84A52920AE86DF00DB8807 /* SongsSearchViewModelTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

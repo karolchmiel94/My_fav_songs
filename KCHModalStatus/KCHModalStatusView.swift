@@ -14,7 +14,7 @@ public class KCHModalStatusView: UIView {
     @IBOutlet private weak var headlineLabel: UILabel!
     @IBOutlet private weak var subheadLabel: UILabel!
     
-    let TIME_INTERVAL = 2.0
+    let TIME_INTERVAL = 1.0
     let ANIMATION_DURATION = 0.15
     
     let nibName = "KCHModalStatusView"
