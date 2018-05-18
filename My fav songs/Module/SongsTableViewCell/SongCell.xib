@@ -27,10 +27,10 @@
                         </constraints>
                     </imageView>
                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="pVp-2S-CSu">
-                        <rect key="frame" x="106" y="11" width="223" height="80"/>
+                        <rect key="frame" x="106" y="11" width="211" height="80"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Meek, Oh Why?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sta-Yc-EHl">
-                                <rect key="frame" x="0.0" y="0.0" width="223" height="30"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Artist Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sta-Yc-EHl">
+                                <rect key="frame" x="0.0" y="0.0" width="211" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="yoT-el-oUi"/>
                                 </constraints>
@@ -38,8 +38,8 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Zabieraj Wzrok, Mało Spałem" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cAO-RS-Q3s">
-                                <rect key="frame" x="0.0" y="30" width="223" height="30"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Track Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cAO-RS-Q3s">
+                                <rect key="frame" x="0.0" y="30" width="211" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="kJL-xR-ejo"/>
                                 </constraints>
@@ -47,8 +47,8 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Genre: Rap" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="g2I-7j-sqO">
-                                <rect key="frame" x="0.0" y="60" width="223" height="20"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Genre Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="g2I-7j-sqO">
+                                <rect key="frame" x="0.0" y="60" width="211" height="20"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -80,7 +80,7 @@
                     <constraint firstAttribute="trailing" secondItem="AUZ-eN-Fwk" secondAttribute="trailing" constant="10" id="JcU-NB-5MW"/>
                     <constraint firstItem="pVp-2S-CSu" firstAttribute="leading" secondItem="AGo-md-lzA" secondAttribute="trailing" constant="10" id="L0b-Cl-TGW"/>
                     <constraint firstItem="AGo-md-lzA" firstAttribute="leading" secondItem="N9M-2k-dLZ" secondAttribute="leadingMargin" id="UWu-Bz-sEq"/>
-                    <constraint firstAttribute="trailingMargin" secondItem="pVp-2S-CSu" secondAttribute="trailing" constant="30" id="fUm-it-XGa"/>
+                    <constraint firstAttribute="trailing" secondItem="pVp-2S-CSu" secondAttribute="trailing" constant="58" id="ZcM-iF-jT8"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>

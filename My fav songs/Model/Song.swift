@@ -29,4 +29,17 @@ enum SongKeys {
             return "primaryGenreName"
         }
     }
+    
+    func prettyDescription() -> String {
+        switch self {
+        case .artistName:
+            return "Artist Name"
+        case .trackName:
+            return "Track Name"
+        case .artworkUrl100:
+            return "Artwork url"
+        case .primaryGenreName:
+            return "Music Genre"
+        }
+    }
 }

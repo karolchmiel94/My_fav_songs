@@ -28,3 +28,10 @@ class SongTableViewCell: UITableViewCell {
     }
 
 }
+
+struct SongListCellViewModel {
+    let artistNameText: String
+    let songTitleText: String
+    let artworkUrl: String
+    let genreText: String
+}
