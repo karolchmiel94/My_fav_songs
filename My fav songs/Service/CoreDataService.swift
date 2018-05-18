@@ -13,6 +13,7 @@ protocol CoreDataProtocol {
     func fetchSongs(onSuccess: @escaping([Song]) -> Void, onFailure: @escaping(Error) -> Void)
     func saveSong(_ song: Song, onSuccess: @escaping(Bool) -> Void, onFailure: @escaping(Error) -> Void)
     func sortSongsBy(_ key: String, _ ascending: Bool, onSuccess: @escaping([Song]) -> Void, onFailure: @escaping(Error) -> Void)
+    func deleteSong(_ song: Song, onSuccess: @escaping(Bool) -> Void, onFailure: @escaping(Error) -> Void)
 }
 
 class CoreDataService: CoreDataProtocol {
@@ -76,6 +77,22 @@ class CoreDataService: CoreDataProtocol {
         }
     }
     
+    func deleteSong(_ song: Song, onSuccess: @escaping (Bool) -> Void, onFailure: @escaping (Error) -> Void) {
+        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: ENTITY_NAME)
+        let namePredicate = NSPredicate(format: "\(SongKeys.artistName.stringValue()) = %@", song.artistName)
+        let titlePredicate = NSPredicate(format: "\(SongKeys.trackName.stringValue()) = %@", song.trackName)
+        fetchRequest.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [namePredicate, titlePredicate])
+        do {
+            let results = try context.fetch(fetchRequest)
+            for object in results {
+                context.delete(object)
+            }
+            try context.save()
+            onSuccess(true)
+        } catch {
+            onFailure(error)
+        }
+    }
 }
 
 extension CoreDataService {

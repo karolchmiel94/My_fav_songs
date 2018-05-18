@@ -14,6 +14,7 @@
 		3C00961020AE35850017E6A6 /* saveIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 3C00960F20AE35850017E6A6 /* saveIcon.png */; };
 		3C00961720AE37210017E6A6 /* KCHModalStatus.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3C00961620AE37180017E6A6 /* KCHModalStatus.framework */; };
 		3C00961820AE37210017E6A6 /* KCHModalStatus.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 3C00961620AE37180017E6A6 /* KCHModalStatus.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		3C56850520AE4E9900DBAA46 /* deleteIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 3C56850420AE4E9900DBAA46 /* deleteIcon.png */; };
 		3C9DDDA020AA13BB00D72ABE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C9DDD9F20AA13BB00D72ABE /* AppDelegate.swift */; };
 		3C9DDDA220AA13BB00D72ABE /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C9DDDA120AA13BB00D72ABE /* ViewController.swift */; };
 		3C9DDDA520AA13BB00D72ABE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3C9DDDA320AA13BB00D72ABE /* Main.storyboard */; };
@@ -75,6 +76,7 @@
 		3C00960020AE29FD0017E6A6 /* CoreDataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataService.swift; sourceTree = "<group>"; };
 		3C00960F20AE35850017E6A6 /* saveIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = saveIcon.png; sourceTree = "<group>"; };
 		3C00961120AE37170017E6A6 /* KCHModalStatus.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = KCHModalStatus.xcodeproj; sourceTree = "<group>"; };
+		3C56850420AE4E9900DBAA46 /* deleteIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = deleteIcon.png; sourceTree = "<group>"; };
 		3C9DDD9C20AA13BB00D72ABE /* My fav songs.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "My fav songs.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3C9DDD9F20AA13BB00D72ABE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3C9DDDA120AA13BB00D72ABE /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -125,6 +127,7 @@
 		3C00960E20AE35710017E6A6 /* Icons */ = {
 			isa = PBXGroup;
 			children = (
+				3C56850420AE4E9900DBAA46 /* deleteIcon.png */,
 				3C00960F20AE35850017E6A6 /* saveIcon.png */,
 			);
 			path = Icons;
@@ -344,6 +347,7 @@
 				3C9DDDAA20AA13BC00D72ABE /* Assets.xcassets in Resources */,
 				3C9DDDA520AA13BB00D72ABE /* Main.storyboard in Resources */,
 				3C00961020AE35850017E6A6 /* saveIcon.png in Resources */,
+				3C56850520AE4E9900DBAA46 /* deleteIcon.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -87,7 +87,12 @@ extension SavedSongsViewModel {
     func deleteSong(at indexPath: Int) {
         let song = self.data[indexPath]
         self.selectedSong = song
-        print("Deleting song")
+        self.deletingSong = true
+        coreDataService.deleteSong(song, onSuccess: { (success) in
+            self.deletingSong = false
+        }) { (error) in
+            self.alertMessage = error as? String
+        }
     }
     
     func sortSongsBy(_ key: String,_ ascending: Bool) {
@@ -99,4 +104,6 @@ extension SavedSongsViewModel {
             self.alertMessage = error as? String
         }
     }
+    
+    
 }

@@ -119,7 +119,6 @@
                             <constraint firstItem="lAq-az-19p" firstAttribute="bottom" secondItem="ZVe-cJ-uBU" secondAttribute="bottom" id="9gm-XF-gsg"/>
                             <constraint firstItem="RRB-Qg-JCy" firstAttribute="leading" secondItem="lAq-az-19p" secondAttribute="leading" constant="20" id="Coy-tX-h0y"/>
                             <constraint firstItem="lAq-az-19p" firstAttribute="trailing" secondItem="RRB-Qg-JCy" secondAttribute="trailing" constant="20" id="DYl-q1-Cgx"/>
-                            <constraint firstItem="Soq-LY-N42" firstAttribute="top" secondItem="lAq-az-19p" secondAttribute="top" id="JfB-5Y-Kja"/>
                             <constraint firstItem="Soq-LY-N42" firstAttribute="leading" secondItem="lAq-az-19p" secondAttribute="leading" id="MYz-Va-8jR"/>
                             <constraint firstItem="woI-72-VGc" firstAttribute="centerY" secondItem="jdc-EC-GLw" secondAttribute="centerY" id="XX4-cr-kd9"/>
                             <constraint firstItem="RRB-Qg-JCy" firstAttribute="centerY" secondItem="jdc-EC-GLw" secondAttribute="centerY" id="fNG-do-sfG"/>
@@ -127,6 +126,7 @@
                             <constraint firstItem="woI-72-VGc" firstAttribute="centerX" secondItem="jdc-EC-GLw" secondAttribute="centerX" id="xHF-PP-IMa"/>
                             <constraint firstItem="ZVe-cJ-uBU" firstAttribute="top" secondItem="Soq-LY-N42" secondAttribute="bottom" id="yGj-Dx-77e"/>
                             <constraint firstItem="ZVe-cJ-uBU" firstAttribute="leading" secondItem="lAq-az-19p" secondAttribute="leading" id="yZe-Q3-9mP"/>
+                            <constraint firstItem="lAq-az-19p" firstAttribute="top" secondItem="Soq-LY-N42" secondAttribute="top" id="zDP-Xt-JKZ"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="lAq-az-19p"/>
                     </view>
@@ -160,13 +160,13 @@
             </objects>
             <point key="canvasLocation" x="230" y="750"/>
         </scene>
-        <!--Item 1-->
+        <!--Navigation Controller-->
         <scene sceneID="4bJ-ZE-Mxa">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" hidesBarsWhenVerticallyCompact="YES" id="TX3-sc-LCJ" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item 1" id="gSX-wK-QHy"/>
+                    <tabBarItem key="tabBarItem" systemItem="search" id="gSX-wK-QHy"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="6kB-1o-6mG">
+                    <navigationBar key="navigationBar" userInteractionEnabled="NO" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="6kB-1o-6mG">
                         <rect key="frame" x="0.0" y="20" width="375" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -179,11 +179,11 @@
             </objects>
             <point key="canvasLocation" x="1180" y="416.94152923538235"/>
         </scene>
-        <!--Item 2-->
+        <!--Navigation Controller-->
         <scene sceneID="bAe-z3-g3t">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="FuI-uB-9Fz" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item 2" id="8sf-g8-D0d"/>
+                    <tabBarItem key="tabBarItem" systemItem="favorites" id="8sf-g8-D0d"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="9WY-Fg-CML">
                         <rect key="frame" x="0.0" y="20" width="375" height="96"/>

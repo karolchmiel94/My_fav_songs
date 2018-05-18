@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import KCHModalStatus
 
 class SavedSongsViewController: UIViewController {
 
@@ -64,6 +65,16 @@ class SavedSongsViewController: UIViewController {
         viewModel.reloadTableViewClosure = { [weak self] in
             DispatchQueue.main.async {
                 self?.songsTableView.reloadData()
+            }
+        }
+        
+        viewModel.deleteSongModal = { [weak self] in
+            DispatchQueue.main.async {
+                let modalView = KCHModalStatusView(frame: (self?.view.frame)!)
+                modalView.set(image: UIImage(named: "deleteIcon")!)
+                modalView.set(title: "Deleting song")
+                self?.view.addSubview(modalView)
+                self?.viewModel.fetchSongs()
             }
         }
         
