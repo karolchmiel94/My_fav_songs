@@ -14,11 +14,10 @@ class SongsSearchViewModelTests: XCTestCase {
     var viewModel: SongsSearchViewModel!
     var mockAPIService: MockApiService!
     
-    
     override func setUp() {
         super.setUp()
         mockAPIService = MockApiService()
-        viewModel = SongsSearchViewModel(appDelegate: AppDelegate())
+        viewModel = SongsSearchViewModel(apiService: mockAPIService, appDelegate: AppDelegate())
     }
     
     override func tearDown() {
@@ -29,15 +28,29 @@ class SongsSearchViewModelTests: XCTestCase {
     
     func test_fetch_songs() {
         mockAPIService.completeResult = ResultData(resultCount: Int(), results: [Song]())
-        viewModel.searchForSongs("")
+        viewModel.searchForSongs("Krawczyk")
         XCTAssert(mockAPIService!.isFetchSongsCalled)
     }
     
-    func test_fetch_fail() {
-//        let error = Error.self
-//        viewModel.searchForSongs("laki lan")
-//        mockAPIService.fetchFail(error: error as! Error)
-//        XCTAssertEqual(viewModel.alertMessage, String(describing: error))
+    func test_create_cell_view_model() {
+        // Given
+        let result = StubGenerator().stubSongs()
+        mockAPIService.completeResult = result
+        let expect = XCTestExpectation(description: "reload closure triggered")
+        viewModel.reloadTableViewClosure = { () in
+            expect.fulfill()
+        }
+        
+        // When
+        viewModel.searchForSongs("Zbigniew Wodecki")
+        mockAPIService.fetchSuccess()
+        
+        // Number of cell view model is equal to the number of photos
+        XCTAssertEqual(viewModel.numberOfCells, result.results.count)
+        
+        // XCTAssert reload closure triggered
+        wait(for: [expect], timeout: 1.0)
+        
     }
     
     func testPerformanceExample() {
@@ -52,7 +65,7 @@ class SongsSearchViewModelTests: XCTestCase {
 extension SongsSearchViewModelTests {
     private func goToFetchSongFinished() {
         mockAPIService.completeResult = StubGenerator().stubSongs()
-        viewModel.searchForSongs("laki lan")
+        viewModel.searchForSongs("Krawczyk")
         mockAPIService.fetchSuccess()
     }
 }
@@ -74,8 +87,8 @@ class MockApiService: APIProtocol {
         successClosure(completeResult)
     }
     
-    func fetchFail(error: Error) {
-        failClosure(error)
+    func fetchFail(error: Error.Type) {
+        failClosure(error as! Error)
     }
     
 }
