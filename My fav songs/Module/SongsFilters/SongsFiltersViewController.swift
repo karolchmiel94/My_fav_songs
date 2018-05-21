@@ -8,11 +8,19 @@
 
 import UIKit
 
+// Name of the protocol is too vague. Could you try to be more specific?
+// Also, consider introducing another layer, something that contains filters state.
+// This filters state object could be passed to the filters screen so that filters screen
+// can fill it's fields with the current state (imagine that user made a typo and only wants to correct it,
+// without entering the whole config from scratch)
+// On the other side, the saved songs VC could somehow observe the changes in the filters state object and reload itself once
+// it changes. This would also loosen the dependencies beetween filters vc and savedsongs vc.
 protocol DataDelegate {
     func filterSongsBy(_ songDataType: SongKeys, _ ascending: Bool)
     func searchSongBy(_ text: String, _ songDataType: SongKeys)
 }
 
+// Since you've introduced MVVM in other views, maybe it would be good to use it here as well?
 class SongsFiltersViewController: UIViewController {
     
     let pickerComponents = [SongKeys.artistName,
@@ -31,6 +39,9 @@ class SongsFiltersViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // This is a cosmetic note, but please stick to one way of accessing variables: either `self.x` or simply `x`.
+        // We prefer the latter one though.
         self.mainView.roundCorners(with: 10.0)
         selectedKey = pickerComponents[0]
         searchTextField.delegate = self

@@ -8,6 +8,7 @@
 
 import UIKit
 
+// Does this class do anything?
 class ViewController: UIViewController {
 
     override func viewDidLoad() {

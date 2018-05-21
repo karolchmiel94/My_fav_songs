@@ -8,6 +8,7 @@
 
 import Foundation
 
+// Take a look at comments from SavedSongsViewModel
 class SongsSearchViewModel {
     
     private var data: ResultData

@@ -29,16 +29,19 @@ class SavedSongsViewController: UIViewController {
         initVM()
     }
     
+    // You shouldn't omit the call to superclass in ViewController's lifecycle methods.
     override func viewWillAppear(_ animated: Bool) {
         viewModel.fetchSongs()
     }
-
+    
+    // Consider replacing word "init" in the below methods with something else. It's confusing because you're not actually initializing anything.
     func initView() {
         songsTableView.isHidden = true
         activityIndicator.isHidden = true
     }
     
     func initVM() {
+        // [weak self] is required, but instead of using optional self in the closures, why not unwrap it?
         viewModel.showAlertClosure = { [weak self] () in
             DispatchQueue.main.async {
                 if let message = self?.viewModel.alertMessage {
@@ -84,7 +87,6 @@ class SavedSongsViewController: UIViewController {
                 self?.viewModel.fetchSongs()
             }
         }
-        
     }
     
     func showAlert(with message: String) {
@@ -96,6 +98,7 @@ class SavedSongsViewController: UIViewController {
     }
     
     @IBAction func showModal(_ sender: Any) {
+        // Why not do it through storyboard segue?
         let modalVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "SongsFiltersViewController") as! SongsFiltersViewController
         modalVC.delegate = viewModel
         modalVC.modalPresentationStyle = .overFullScreen

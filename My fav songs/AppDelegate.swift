@@ -9,6 +9,8 @@
 import UIKit
 import CoreData
 
+// General comment: please remove all buildtime warnings.
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 

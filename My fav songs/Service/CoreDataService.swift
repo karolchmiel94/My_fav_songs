@@ -9,6 +9,7 @@
 import Foundation
 import CoreData
 
+// Name too vague - please change to more specific.
 protocol CoreDataProtocol {
     func fetchSongs(onSuccess: @escaping([Song]) -> Void, onFailure: @escaping(Error) -> Void)
     func saveSong(_ song: Song, onSuccess: @escaping(Bool) -> Void, onFailure: @escaping(Error) -> Void)
@@ -17,6 +18,8 @@ protocol CoreDataProtocol {
     func deleteSong(_ song: Song, onSuccess: @escaping(Bool) -> Void, onFailure: @escaping(Error) -> Void)
 }
 
+// There's a couple of fields/methods in this class that could and should be hidden (meaning - made private).
+// Also, please treat this comment as a general one and improve encapsulation in the whole project.
 class CoreDataService: CoreDataProtocol {
     
     let ENTITY_NAME = "Songs"
@@ -32,6 +35,7 @@ class CoreDataService: CoreDataProtocol {
     }
     
     func fetchRequest() -> NSFetchRequest<NSManagedObject> {
+        // Please use NSManagedObject.fetchRequest
         return NSFetchRequest<NSManagedObject>(entityName: ENTITY_NAME)
     }
     
@@ -51,6 +55,8 @@ class CoreDataService: CoreDataProtocol {
     }
     
     func saveSong(_ song: Song, onSuccess: @escaping (Bool) -> Void, onFailure: @escaping (Error) -> Void) {
+        // If you use this API: NSManagedObject(context: context) for creating a Songs object,
+        // you'll be able to have strongly typed Songs object and not rely on string keys for setting it's properties.
         let newSong = NSManagedObject(entity: self.entity, insertInto: self.context)
         newSong.setValue(song.artistName, forKey: SongKeys.artistName.stringValue())
         newSong.setValue(song.trackName, forKey: SongKeys.trackName.stringValue())
@@ -116,6 +122,7 @@ class CoreDataService: CoreDataProtocol {
 }
 
 extension CoreDataService {
+    // Use Songs class instead of the superclass.
     func parseSongData(_ song: NSManagedObject) -> Song {
         return Song(artistName: song.value(forKey: SongKeys.artistName.stringValue()) as! String,
              trackName: song.value(forKey: SongKeys.trackName.stringValue()) as! String,

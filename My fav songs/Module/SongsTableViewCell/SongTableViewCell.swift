@@ -16,6 +16,7 @@ class SongTableViewCell: UITableViewCell {
     @IBOutlet weak var songGenreLabel: UILabel!
     @IBOutlet weak var songButton: UIButton!
     
+    // Please remove all empty overrides
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -29,6 +30,7 @@ class SongTableViewCell: UITableViewCell {
 
 }
 
+// Consider moving this to a separate file
 struct SongListCellViewModel {
     let artistNameText: String
     let songTitleText: String

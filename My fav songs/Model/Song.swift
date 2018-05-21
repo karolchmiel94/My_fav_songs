@@ -17,6 +17,8 @@ struct Song: Decodable {
 
 enum SongKeys {
     case artistName, trackName, artworkUrl100, primaryGenreName
+    
+    // If you make enum "inherit" from String, you can simply use `rawValue` to achieve the same what you did in this method.
     func stringValue() -> String {
         switch self {
         case .artistName:
