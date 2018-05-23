@@ -18,6 +18,7 @@ class SongsSearchViewController: UIViewController {
     
     let CELL_ID = "songCell"
     let CELL_NIB_NAME = "SongCell"
+    let DEFAULT_ERROR_TEXT = "Couldn't find songs"
     
     lazy var viewModel: SongsSearchViewModel = {
         return SongsSearchViewModel(appDelegate: UIApplication.shared.delegate as! AppDelegate)
@@ -38,25 +39,19 @@ class SongsSearchViewController: UIViewController {
     func initVM() {
         viewModel.showAlertClosure = { [weak self] () in
             DispatchQueue.main.async {
-                if let message = self?.viewModel.alertMessage {
-                    self?.showAlert(with: message)
+                let message = self?.viewModel.alertMessage ?? self?.DEFAULT_ERROR_TEXT
+                self?.showAlert(with: message!)
+                self?.showEmptyListLabel()
                 }
-            }
         }
         
         viewModel.updateLoadingStatus = { [weak self] () in
             DispatchQueue.main.async {
                 let isLoading = self?.viewModel.isLoading ?? false
                 if isLoading {
-                    self?.emptyListLabel.isHidden = true
-                    self?.songsTableView.isHidden = true
-                    self?.activityIndicator.isHidden = false
-                    self?.activityIndicator.startAnimating()
+                    self?.showLoadingIndicator()
                 } else {
-                    self?.emptyListLabel.isHidden = true
-                    self?.songsTableView.isHidden = false
-                    self?.activityIndicator.isHidden = true
-                    self?.activityIndicator.stopAnimating()
+                    self?.showTableView()
                 }
             }
         }
@@ -76,13 +71,34 @@ class SongsSearchViewController: UIViewController {
             }
         }
     }
+    
+    func showTableView() {
+        emptyListLabel.isHidden = true
+        activityIndicator.isHidden = true
+        activityIndicator.stopAnimating()
+        songsTableView.isHidden = false
+    }
+    
+    func showEmptyListLabel() {
+        songsTableView.isHidden = true
+        activityIndicator.stopAnimating()
+        activityIndicator.isHidden = true
+        emptyListLabel.isHidden = false
+    }
+    
+    func showLoadingIndicator() {
+        emptyListLabel.isHidden = true
+        songsTableView.isHidden = true
+        activityIndicator.isHidden = false
+        activityIndicator.startAnimating()
+    }
 
     func showAlert(with message: String) {
         let alert = UIAlertController(title: "Error",
                                                     message: message,
                                                     preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
-        alert.show(self, sender: nil)
+        self.present(alert, animated: true, completion: nil)
     }
     
     override func didReceiveMemoryWarning() {
@@ -127,4 +143,3 @@ extension SongsSearchViewController: UISearchBarDelegate {
         searchBar.resignFirstResponder()
     }
 }
-

@@ -30,6 +30,8 @@
 		3C9DDDCC20AB887200D72ABE /* SongCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3C9DDDCB20AB887200D72ABE /* SongCell.xib */; };
 		3C9DDDCE20AB8B8E00D72ABE /* SongTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C9DDDCD20AB8B8E00D72ABE /* SongTableViewCell.swift */; };
 		3CB39E4E20AEDA90007C74F2 /* APIServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CB39E4D20AEDA90007C74F2 /* APIServiceTests.swift */; };
+		3CB39E5220B1B856007C74F2 /* CoreDataServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CB39E5120B1B856007C74F2 /* CoreDataServiceTests.swift */; };
+		3CB39E5320B1BD0A007C74F2 /* My_fav_songs.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 3C9DDDA620AA13BB00D72ABE /* My_fav_songs.xcdatamodeld */; };
 		3CBFFAB920ACCF3700136178 /* WebService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CBFFAB820ACCF3700136178 /* WebService.swift */; };
 		3CBFFABC20ACD6F100136178 /* Song.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CBFFABB20ACD6F100136178 /* Song.swift */; };
 		3CBFFABE20ACD89400136178 /* ResultData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CBFFABD20ACD89400136178 /* ResultData.swift */; };
@@ -100,6 +102,7 @@
 		3C9DDDCB20AB887200D72ABE /* SongCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SongCell.xib; sourceTree = "<group>"; };
 		3C9DDDCD20AB8B8E00D72ABE /* SongTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongTableViewCell.swift; sourceTree = "<group>"; };
 		3CB39E4D20AEDA90007C74F2 /* APIServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIServiceTests.swift; sourceTree = "<group>"; };
+		3CB39E5120B1B856007C74F2 /* CoreDataServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataServiceTests.swift; sourceTree = "<group>"; };
 		3CBFFAB820ACCF3700136178 /* WebService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebService.swift; sourceTree = "<group>"; };
 		3CBFFABB20ACD6F100136178 /* Song.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Song.swift; sourceTree = "<group>"; };
 		3CBFFABD20ACD89400136178 /* ResultData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultData.swift; sourceTree = "<group>"; };
@@ -200,6 +203,7 @@
 			isa = PBXGroup;
 			children = (
 				3C9DDDB720AA13BD00D72ABE /* My_fav_songsTests.swift */,
+				3CB39E5120B1B856007C74F2 /* CoreDataServiceTests.swift */,
 				3C84A52820AE86DF00DB8807 /* SongsSearchViewModelTests.swift */,
 				3CB39E4D20AEDA90007C74F2 /* APIServiceTests.swift */,
 				3C9DDDB920AA13BD00D72ABE /* Info.plist */,
@@ -407,9 +411,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3CB39E5220B1B856007C74F2 /* CoreDataServiceTests.swift in Sources */,
 				3CB39E4E20AEDA90007C74F2 /* APIServiceTests.swift in Sources */,
 				3C9DDDB820AA13BD00D72ABE /* My_fav_songsTests.swift in Sources */,
 				3C84A52920AE86DF00DB8807 /* SongsSearchViewModelTests.swift in Sources */,
+				3CB39E5320B1BD0A007C74F2 /* My_fav_songs.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

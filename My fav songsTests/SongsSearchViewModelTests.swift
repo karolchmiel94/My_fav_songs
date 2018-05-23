@@ -95,7 +95,7 @@ class MockApiService: APIProtocol {
 
 class StubGenerator {
     func stubSongs() -> ResultData {
-        let path = "https://itunes.apple.com/search?term=Laki%20lan&limit=25&medium=music"
+        let path = "https://itunes.apple.com/search?term=steve%20wonder&limit=25&medium=music"
         var songs: ResultData?
         do {
             let data = try! Data(contentsOf: URL(string: path)!)

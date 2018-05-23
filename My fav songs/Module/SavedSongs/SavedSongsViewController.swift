@@ -18,6 +18,7 @@ class SavedSongsViewController: UIViewController {
     let CELL_BUTTON_TEXT = "Delete"
     let CELL_ID = "songCell"
     let CELL_NIB_NAME = "SongCell"
+    let DEFAULT_ERROR_TEXT = "Couldn't load songs"
     
     lazy var viewModel: SavedSongsViewModel = {
         return SavedSongsViewModel(appDelegate: UIApplication.shared.delegate as! AppDelegate)
@@ -34,15 +35,16 @@ class SavedSongsViewController: UIViewController {
     }
 
     func initView() {
-        songsTableView.isHidden = true
-        activityIndicator.isHidden = true
+        showEmptyListLabel()
     }
     
     func initVM() {
         viewModel.showAlertClosure = { [weak self] () in
             DispatchQueue.main.async {
-                if let message = self?.viewModel.alertMessage {
-                    self?.showAlert(with: message)
+                DispatchQueue.main.async {
+                    let message = self?.viewModel.alertMessage ?? self?.DEFAULT_ERROR_TEXT
+                    self?.showAlert(with: message!)
+                    self?.showEmptyListLabel()
                 }
             }
         }
@@ -51,20 +53,13 @@ class SavedSongsViewController: UIViewController {
             DispatchQueue.main.async {
                 let isLoading = self?.viewModel.isLoading ?? false
                 if isLoading {
-                    self?.noSongsLabel.isHidden = true
-                    self?.songsTableView.isHidden = true
-                    self?.activityIndicator.isHidden = false
-                    self?.activityIndicator.startAnimating()
+                    self?.showLoadingIndicator()
                 } else {
                     if (self?.viewModel.numberOfCells)! > 0 {
-                        self?.noSongsLabel.isHidden = true
-                        self?.songsTableView.isHidden = false
+                        self?.showTableView()
                     } else {
-                        self?.noSongsLabel.isHidden = false
-                        self?.songsTableView.isHidden = true
+                        self?.showEmptyListLabel()
                     }
-                    self?.activityIndicator.isHidden = true
-                    self?.activityIndicator.stopAnimating()
                 }
             }
         }
@@ -87,12 +82,33 @@ class SavedSongsViewController: UIViewController {
         
     }
     
+    func showEmptyListLabel() {
+        songsTableView.isHidden = true
+        activityIndicator.stopAnimating()
+        activityIndicator.isHidden = true
+        noSongsLabel.isHidden = false
+    }
+    
+    func showLoadingIndicator() {
+        noSongsLabel.isHidden = true
+        songsTableView.isHidden = true
+        activityIndicator.isHidden = false
+        activityIndicator.startAnimating()
+    }
+    
+    func showTableView() {
+        noSongsLabel.isHidden = true
+        activityIndicator.isHidden = true
+        activityIndicator.stopAnimating()
+        songsTableView.isHidden = false
+    }
+    
     func showAlert(with message: String) {
         let alert = UIAlertController(title: "Error",
                                       message: message,
                                       preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
-        alert.show(self, sender: nil)
+        self.present(alert, animated: true, completion: nil)
     }
     
     @IBAction func showModal(_ sender: Any) {

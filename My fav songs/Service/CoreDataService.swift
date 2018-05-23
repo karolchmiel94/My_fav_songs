@@ -59,7 +59,8 @@ class CoreDataService: CoreDataProtocol {
         do {
             try context.save()
             onSuccess(true)
-        } catch {
+        } catch let error {
+            print(error)
             onFailure(error)
         }
     }
@@ -76,7 +77,6 @@ class CoreDataService: CoreDataProtocol {
             }
             onSuccess(songs)
         } catch let error {
-            print(error)
             onFailure(error)
         }
     }
