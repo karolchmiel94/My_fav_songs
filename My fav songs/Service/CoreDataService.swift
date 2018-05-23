@@ -58,10 +58,10 @@ class CoreDataService: CoreDataProtocol {
         // If you use this API: NSManagedObject(context: context) for creating a Songs object,
         // you'll be able to have strongly typed Songs object and not rely on string keys for setting it's properties.
         let newSong = NSManagedObject(entity: self.entity, insertInto: self.context)
-        newSong.setValue(song.artistName, forKey: SongKeys.artistName.stringValue())
-        newSong.setValue(song.trackName, forKey: SongKeys.trackName.stringValue())
-        newSong.setValue(song.artworkUrl100, forKey: SongKeys.artworkUrl100.stringValue())
-        newSong.setValue(song.primaryGenreName, forKey: SongKeys.primaryGenreName.stringValue())
+        newSong.setValue(song.artistName, forKey: SongKeys.artistName.rawValue)
+        newSong.setValue(song.trackName, forKey: SongKeys.trackName.rawValue)
+        newSong.setValue(song.artworkUrl100, forKey: SongKeys.artworkUrl100.rawValue)
+        newSong.setValue(song.primaryGenreName, forKey: SongKeys.primaryGenreName.rawValue)
         do {
             try context.save()
             onSuccess(true)
@@ -72,7 +72,7 @@ class CoreDataService: CoreDataProtocol {
     
     func sortSongsBy(_ songDataType: SongKeys, _ ascending: Bool, onSuccess: @escaping ([Song]) -> Void, onFailure: @escaping (Error) -> Void) {
         let fetchRequest = self.fetchRequest()
-        let sort = NSSortDescriptor(key: songDataType.stringValue(), ascending: ascending)
+        let sort = NSSortDescriptor(key: songDataType.rawValue, ascending: ascending)
         fetchRequest.sortDescriptors = [sort]
         do {
             let result = try context.fetch(fetchRequest)
@@ -89,7 +89,7 @@ class CoreDataService: CoreDataProtocol {
     
     func searchSongsFor(_ key: String, _ songDataType: SongKeys, onSuccess: @escaping ([Song]) -> Void, onFailure: @escaping (Error) -> Void) {
         let fetchRequest = self.fetchRequest()
-        fetchRequest.predicate = NSPredicate(format: "\(songDataType.stringValue()) CONTAINS[cd] %@", key)
+        fetchRequest.predicate = NSPredicate(format: "\(songDataType.rawValue) CONTAINS[cd] %@", key)
         do {
             let results = try context.fetch(fetchRequest)
             var songs = [Song]()
@@ -105,8 +105,8 @@ class CoreDataService: CoreDataProtocol {
     
     func deleteSong(_ song: Song, onSuccess: @escaping (Bool) -> Void, onFailure: @escaping (Error) -> Void) {
         let fetchRequest = self.fetchRequest()
-        let namePredicate = NSPredicate(format: "\(SongKeys.artistName.stringValue()) = %@", song.artistName)
-        let titlePredicate = NSPredicate(format: "\(SongKeys.trackName.stringValue()) = %@", song.trackName)
+        let namePredicate = NSPredicate(format: "\(SongKeys.artistName.rawValue) = %@", song.artistName)
+        let titlePredicate = NSPredicate(format: "\(SongKeys.trackName.rawValue) = %@", song.trackName)
         fetchRequest.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [namePredicate, titlePredicate])
         do {
             let results = try context.fetch(fetchRequest)
@@ -124,9 +124,9 @@ class CoreDataService: CoreDataProtocol {
 extension CoreDataService {
     // Use Songs class instead of the superclass.
     func parseSongData(_ song: NSManagedObject) -> Song {
-        return Song(artistName: song.value(forKey: SongKeys.artistName.stringValue()) as! String,
-             trackName: song.value(forKey: SongKeys.trackName.stringValue()) as! String,
-             artworkUrl100: song.value(forKey: SongKeys.artworkUrl100.stringValue()) as! String,
-             primaryGenreName: song.value(forKey: SongKeys.primaryGenreName.stringValue()) as! String)
+        return Song(artistName: song.value(forKey: SongKeys.artistName.rawValue) as! String,
+             trackName: song.value(forKey: SongKeys.trackName.rawValue) as! String,
+             artworkUrl100: song.value(forKey: SongKeys.artworkUrl100.rawValue) as! String,
+             primaryGenreName: song.value(forKey: SongKeys.primaryGenreName.rawValue) as! String)
     }
 }

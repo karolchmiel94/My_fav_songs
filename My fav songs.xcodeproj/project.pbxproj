@@ -14,6 +14,7 @@
 		3C00961020AE35850017E6A6 /* saveIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 3C00960F20AE35850017E6A6 /* saveIcon.png */; };
 		3C00961720AE37210017E6A6 /* KCHModalStatus.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3C00961620AE37180017E6A6 /* KCHModalStatus.framework */; };
 		3C00961820AE37210017E6A6 /* KCHModalStatus.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 3C00961620AE37180017E6A6 /* KCHModalStatus.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		3C4BC50C20B5FBCA0053C8A2 /* SongListCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C4BC50B20B5FBCA0053C8A2 /* SongListCellViewModel.swift */; };
 		3C56850520AE4E9900DBAA46 /* deleteIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 3C56850420AE4E9900DBAA46 /* deleteIcon.png */; };
 		3C56850820AE53AF00DBAA46 /* SongsFiltersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C56850720AE53AF00DBAA46 /* SongsFiltersViewController.swift */; };
 		3C84A52220AE705400DB8807 /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C84A52120AE705400DB8807 /* UIViewExtension.swift */; };
@@ -80,6 +81,7 @@
 		3C00960020AE29FD0017E6A6 /* CoreDataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataService.swift; sourceTree = "<group>"; };
 		3C00960F20AE35850017E6A6 /* saveIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = saveIcon.png; sourceTree = "<group>"; };
 		3C00961120AE37170017E6A6 /* KCHModalStatus.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = KCHModalStatus.xcodeproj; sourceTree = "<group>"; };
+		3C4BC50B20B5FBCA0053C8A2 /* SongListCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongListCellViewModel.swift; sourceTree = "<group>"; };
 		3C56850420AE4E9900DBAA46 /* deleteIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = deleteIcon.png; sourceTree = "<group>"; };
 		3C56850720AE53AF00DBAA46 /* SongsFiltersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongsFiltersViewController.swift; sourceTree = "<group>"; };
 		3C84A52120AE705400DB8807 /* UIViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
@@ -241,6 +243,7 @@
 			children = (
 				3C9DDDCB20AB887200D72ABE /* SongCell.xib */,
 				3C9DDDCD20AB8B8E00D72ABE /* SongTableViewCell.swift */,
+				3C4BC50B20B5FBCA0053C8A2 /* SongListCellViewModel.swift */,
 			);
 			path = SongsTableViewCell;
 			sourceTree = "<group>";
@@ -390,6 +393,7 @@
 				3C00960120AE29FD0017E6A6 /* CoreDataService.swift in Sources */,
 				3C0095FA20AD72690017E6A6 /* SavedSongsViewModel.swift in Sources */,
 				3C0095FF20ADFC010017E6A6 /* UIImageViewExtension.swift in Sources */,
+				3C4BC50C20B5FBCA0053C8A2 /* SongListCellViewModel.swift in Sources */,
 				3C56850820AE53AF00DBAA46 /* SongsFiltersViewController.swift in Sources */,
 				3C9DDDA220AA13BB00D72ABE /* ViewController.swift in Sources */,
 				3CBFFAB920ACCF3700136178 /* WebService.swift in Sources */,

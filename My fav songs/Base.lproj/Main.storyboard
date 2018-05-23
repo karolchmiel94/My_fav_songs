@@ -27,16 +27,6 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="p0c-8z-g9A">
                                 <rect key="frame" x="0.0" y="116" width="375" height="502"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="nMR-f6-v2v">
-                                        <rect key="frame" x="0.0" y="28" width="375" height="44"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="nMR-f6-v2v" id="xdZ-EH-6l8">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
-                                </prototypes>
                                 <connections>
                                     <outlet property="dataSource" destination="NB9-QL-NY0" id="fcl-ie-bII"/>
                                     <outlet property="delegate" destination="NB9-QL-NY0" id="kYo-yK-ra5"/>
@@ -63,7 +53,7 @@
                     <navigationItem key="navigationItem" title="Favourite Songs" id="EYf-Xv-liE">
                         <barButtonItem key="rightBarButtonItem" title="Filter" id="egB-ms-1kE">
                             <connections>
-                                <action selector="showModal:" destination="NB9-QL-NY0" id="v4e-Fz-iE0"/>
+                                <segue destination="Gcj-mR-NSQ" kind="presentation" id="Wxh-M9-ggi"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -88,16 +78,6 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ZVe-cJ-uBU">
                                 <rect key="frame" x="0.0" y="172" width="375" height="446"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" id="8xl-y1-ebz" customClass="SongTableViewCell" customModule="My_fav_songs" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="375" height="44"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="8xl-y1-ebz" id="G5U-3Q-E8T">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
-                                </prototypes>
                                 <connections>
                                     <outlet property="dataSource" destination="ixO-g8-hds" id="0dt-NB-Y8H"/>
                                     <outlet property="delegate" destination="ixO-g8-hds" id="gdQ-dB-mPY"/>
@@ -149,7 +129,7 @@
         <!--Filter-->
         <scene sceneID="0Cl-9g-gPZ">
             <objects>
-                <viewController storyboardIdentifier="SongsFiltersViewController" title="Filter" id="Gcj-mR-NSQ" customClass="SongsFiltersViewController" customModule="My_fav_songs" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SongsFiltersViewController" title="Filter" modalTransitionStyle="crossDissolve" modalPresentationStyle="overFullScreen" id="Gcj-mR-NSQ" customClass="SongsFiltersViewController" customModule="My_fav_songs" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="fTt-js-7yJ">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -159,7 +139,7 @@
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yuL-zF-veV">
-                                <rect key="frame" x="37" y="158.5" width="300" height="350"/>
+                                <rect key="frame" x="37" y="159" width="300" height="350"/>
                                 <subviews>
                                     <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="b8W-WV-rlx">
                                         <rect key="frame" x="0.0" y="0.0" width="300" height="44"/>
@@ -178,14 +158,13 @@
                                             </navigationItem>
                                         </items>
                                     </navigationBar>
-                                    <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sbf-Wd-iUI">
-                                        <rect key="frame" x="100" y="54" width="100" height="30"/>
+                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="sbf-Wd-iUI">
+                                        <rect key="frame" x="106.5" y="54" width="87" height="30"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cfB-QX-ovJ">
-                                                <rect key="frame" x="0.0" y="0.0" width="50" height="30"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="48" height="30"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="30" id="Cdp-bE-Jh6"/>
-                                                    <constraint firstAttribute="width" constant="50" id="KYV-0X-gF6"/>
                                                 </constraints>
                                                 <state key="normal" title="Search"/>
                                                 <connections>
@@ -193,9 +172,8 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eBd-4a-o4b">
-                                                <rect key="frame" x="50" y="0.0" width="50" height="30"/>
+                                                <rect key="frame" x="52" y="0.0" width="35" height="30"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="width" constant="50" id="2xV-xd-my2"/>
                                                     <constraint firstAttribute="height" constant="30" id="wLC-fU-UAq"/>
                                                 </constraints>
                                                 <state key="normal" title="Filter"/>
@@ -205,7 +183,8 @@
                                             </button>
                                         </subviews>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="100" id="0kp-pf-B6c"/>
+                                            <constraint firstItem="cfB-QX-ovJ" firstAttribute="leading" secondItem="sbf-Wd-iUI" secondAttribute="leading" id="OFt-qh-5wW"/>
+                                            <constraint firstAttribute="trailing" secondItem="eBd-4a-o4b" secondAttribute="trailing" id="S9U-pT-3pq"/>
                                         </constraints>
                                     </stackView>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="e0Y-Ml-p8l">
@@ -222,21 +201,20 @@
                                                     <outlet property="delegate" destination="Gcj-mR-NSQ" id="ELe-sD-QB4"/>
                                                 </connections>
                                             </pickerView>
-                                            <stackView opaque="NO" alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wKd-Md-xI0">
-                                                <rect key="frame" x="68.5" y="15" width="154" height="35"/>
+                                            <stackView opaque="NO" alpha="0.0" contentMode="scaleToFill" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="wKd-Md-xI0">
+                                                <rect key="frame" x="76" y="15" width="138.5" height="35"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ascending:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7JZ-B6-Zdh">
-                                                        <rect key="frame" x="0.0" y="0.0" width="105" height="35"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="85.5" height="35"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="35" id="MK8-qa-48S"/>
-                                                            <constraint firstAttribute="width" constant="105" id="OKO-eZ-kMY"/>
                                                         </constraints>
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="UFV-D7-HwF">
-                                                        <rect key="frame" x="105" y="0.0" width="51" height="35"/>
+                                                        <rect key="frame" x="89.5" y="0.0" width="51" height="35"/>
                                                     </switch>
                                                 </subviews>
                                             </stackView>

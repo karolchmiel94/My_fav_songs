@@ -25,68 +25,92 @@ class SavedSongsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        initView()
-        initVM()
+        setViews()
+        setVM()
     }
     
-    // You shouldn't omit the call to superclass in ViewController's lifecycle methods.
     override func viewWillAppear(_ animated: Bool) {
         viewModel.fetchSongs()
+        super.viewWillAppear(true)
     }
     
-    // Consider replacing word "init" in the below methods with something else. It's confusing because you're not actually initializing anything.
-    func initView() {
-        songsTableView.isHidden = true
-        activityIndicator.isHidden = true
+    func setViews() {
+        showEmptyListLabel()
     }
     
-    func initVM() {
-        // [weak self] is required, but instead of using optional self in the closures, why not unwrap it?
-        viewModel.showAlertClosure = { [weak self] () in
+    func setVM() {
+        viewModel.showAlertClosure = { 
+            guard let vc = self as SavedSongsViewController? else {
+                return
+            }
             DispatchQueue.main.async {
-                if let message = self?.viewModel.alertMessage {
-                    self?.showAlert(with: message)
+                if let message = vc.viewModel.alertMessage {
+                    vc.showAlert(with: message)
+                    vc.showEmptyListLabel()
                 }
             }
         }
         
-        viewModel.updateLoadingStatus = { [weak self] in
+        viewModel.updateLoadingStatus = {
+            guard let vc = self as SavedSongsViewController? else {
+                return
+            }
             DispatchQueue.main.async {
-                let isLoading = self?.viewModel.isLoading ?? false
+                let isLoading = vc.viewModel.isLoading
                 if isLoading {
-                    self?.noSongsLabel.isHidden = true
-                    self?.songsTableView.isHidden = true
-                    self?.activityIndicator.isHidden = false
-                    self?.activityIndicator.startAnimating()
+                    vc.showLoadingIndicator()
                 } else {
-                    if (self?.viewModel.numberOfCells)! > 0 {
-                        self?.noSongsLabel.isHidden = true
-                        self?.songsTableView.isHidden = false
+                    if (vc.viewModel.numberOfCells) > 0 {
+                        vc.showTableView()
                     } else {
-                        self?.noSongsLabel.isHidden = false
-                        self?.songsTableView.isHidden = true
+                        vc.showEmptyListLabel()
                     }
-                    self?.activityIndicator.isHidden = true
-                    self?.activityIndicator.stopAnimating()
+                }
+            }
+
+        }
+        
+        viewModel.reloadTableViewClosure = {
+            if let vc = self as SavedSongsViewController? {
+                DispatchQueue.main.async {
+                    vc.songsTableView.reloadData()
                 }
             }
         }
         
-        viewModel.reloadTableViewClosure = { [weak self] in
-            DispatchQueue.main.async {
-                self?.songsTableView.reloadData()
+        viewModel.deleteSongModal = {
+            guard let vc = self as SavedSongsViewController? else {
+                return
             }
-        }
-        
-        viewModel.deleteSongModal = { [weak self] in
             DispatchQueue.main.async {
-                let modalView = KCHModalStatusView(frame: (self?.view.frame)!)
+                let modalView = KCHModalStatusView(frame: (vc.view.frame))
                 modalView.set(image: UIImage(named: "deleteIcon")!)
                 modalView.set(title: "Deleting song")
-                self?.view.addSubview(modalView)
-                self?.viewModel.fetchSongs()
+                vc.view.addSubview(modalView)
+                vc.viewModel.fetchSongs()
             }
         }
+    }
+    
+    func showEmptyListLabel() {
+        songsTableView.isHidden = true
+        activityIndicator.stopAnimating()
+        activityIndicator.isHidden = true
+        noSongsLabel.isHidden = false
+    }
+    
+    func showLoadingIndicator() {
+        noSongsLabel.isHidden = true
+        songsTableView.isHidden = true
+        activityIndicator.isHidden = false
+        activityIndicator.startAnimating()
+    }
+    
+    func showTableView() {
+        noSongsLabel.isHidden = true
+        activityIndicator.isHidden = true
+        activityIndicator.stopAnimating()
+        songsTableView.isHidden = false
     }
     
     func showAlert(with message: String) {
@@ -94,16 +118,7 @@ class SavedSongsViewController: UIViewController {
                                       message: message,
                                       preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
-        alert.show(self, sender: nil)
-    }
-    
-    @IBAction func showModal(_ sender: Any) {
-        // Why not do it through storyboard segue?
-        let modalVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "SongsFiltersViewController") as! SongsFiltersViewController
-        modalVC.delegate = viewModel
-        modalVC.modalPresentationStyle = .overFullScreen
-        modalVC.modalTransitionStyle = .crossDissolve
-        self.present(modalVC, animated: true, completion: nil)
+        self.present(alert, animated: true, completion: nil)
     }
     
     override func didReceiveMemoryWarning() {
@@ -144,4 +159,3 @@ extension SavedSongsViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
 }
-

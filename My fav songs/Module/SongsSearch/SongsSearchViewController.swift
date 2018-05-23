@@ -25,56 +25,82 @@ class SongsSearchViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        initView()
-        initVM()
+        setViews()
+        setVM()
     }
     
-    func initView() {
+    func setViews() {
         searchBar.delegate = self
-        songsTableView.isHidden = true
-        activityIndicator.isHidden = true
+        showEmptyListLabel()
     }
     
-    func initVM() {
-        viewModel.showAlertClosure = { [weak self] () in
+    func setVM() {
+        viewModel.showAlertClosure = {
+            guard let vc = self as SongsSearchViewController? else {
+                return
+            }
             DispatchQueue.main.async {
-                if let message = self?.viewModel.alertMessage {
-                    self?.showAlert(with: message)
+                if let message = vc.viewModel.alertMessage {
+                    vc.showAlert(with: message)
                 }
             }
         }
         
-        viewModel.updateLoadingStatus = { [weak self] () in
+        viewModel.updateLoadingStatus = {
+            guard let vc = self as SongsSearchViewController? else {
+                return
+            }
             DispatchQueue.main.async {
-                let isLoading = self?.viewModel.isLoading ?? false
+                let isLoading = vc.viewModel.isLoading
                 if isLoading {
-                    self?.emptyListLabel.isHidden = true
-                    self?.songsTableView.isHidden = true
-                    self?.activityIndicator.isHidden = false
-                    self?.activityIndicator.startAnimating()
+                    vc.showLoadingIndicator()
                 } else {
-                    self?.emptyListLabel.isHidden = true
-                    self?.songsTableView.isHidden = false
-                    self?.activityIndicator.isHidden = true
-                    self?.activityIndicator.stopAnimating()
+                    vc.showTableView()
                 }
             }
         }
         
-        viewModel.reloadTableViewClosure = { [weak self] in
+        viewModel.reloadTableViewClosure = {
+            guard let vc = self as SongsSearchViewController? else {
+                return
+            }
             DispatchQueue.main.async {
-                self?.songsTableView.reloadData()
+                vc.songsTableView.reloadData()
             }
         }
         
-        viewModel.saveSongModal = { [weak self] in
+        viewModel.saveSongModal = {
+            guard let vc = self as SongsSearchViewController? else {
+                return
+            }
             DispatchQueue.main.async {
-                let modalView = KCHModalStatusView(frame: (self?.view.frame)!)
+                let modalView = KCHModalStatusView(frame: (vc.view.frame))
                 modalView.set(image: UIImage(named: "saveIcon")!)
                 modalView.set(title: "Saving song")
-                self?.view.addSubview(modalView)
+                vc.view.addSubview(modalView)
             }
         }
+    }
+    
+    func showEmptyListLabel() {
+        songsTableView.isHidden = true
+        activityIndicator.stopAnimating()
+        activityIndicator.isHidden = true
+        emptyListLabel.isHidden = false
+    }
+    
+    func showLoadingIndicator() {
+        emptyListLabel.isHidden = true
+        songsTableView.isHidden = true
+        activityIndicator.isHidden = false
+        activityIndicator.startAnimating()
+    }
+    
+    func showTableView() {
+        emptyListLabel.isHidden = true
+        activityIndicator.isHidden = true
+        activityIndicator.stopAnimating()
+        songsTableView.isHidden = false
     }
 
     func showAlert(with message: String) {
