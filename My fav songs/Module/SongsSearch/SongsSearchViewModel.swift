@@ -13,7 +13,7 @@ class SongsSearchViewModel {
     
     private var data: ResultData
     let apiService: APIProtocol
-    let coreDataService: CoreDataProtocol
+    let coreDataService: CoreDataOperationsProtocol
     
     private var cellViewModels: [SongListCellViewModel] = [SongListCellViewModel]() {
         didSet {

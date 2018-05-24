@@ -24,7 +24,7 @@ import Foundation
 class SavedSongsViewModel {
     
     private var data = [Song]()
-    private let coreDataService: CoreDataProtocol
+    private let coreDataService: CoreDataOperationsProtocol
     
     private var cellViewModels: [SongListCellViewModel] = [SongListCellViewModel]() {
         didSet {

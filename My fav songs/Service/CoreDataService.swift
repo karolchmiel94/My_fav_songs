@@ -9,8 +9,7 @@
 import Foundation
 import CoreData
 
-// Name too vague - please change to more specific.
-protocol CoreDataProtocol {
+protocol CoreDataOperationsProtocol {
     func fetchSongs(onSuccess: @escaping([Song]) -> Void, onFailure: @escaping(Error) -> Void)
     func saveSong(_ song: Song, onSuccess: @escaping(Bool) -> Void, onFailure: @escaping(Error) -> Void)
     func sortSongsBy(_ songDataType: SongKeys, _ ascending: Bool, onSuccess: @escaping([Song]) -> Void, onFailure: @escaping(Error) -> Void)
@@ -18,15 +17,13 @@ protocol CoreDataProtocol {
     func deleteSong(_ song: Song, onSuccess: @escaping(Bool) -> Void, onFailure: @escaping(Error) -> Void)
 }
 
-// There's a couple of fields/methods in this class that could and should be hidden (meaning - made private).
-// Also, please treat this comment as a general one and improve encapsulation in the whole project.
-class CoreDataService: CoreDataProtocol {
+class CoreDataService: CoreDataOperationsProtocol {
     
-    let ENTITY_NAME = "Songs"
+    private let ENTITY_NAME = "Songs"
 
-    let appDelegate: AppDelegate
-    var context: NSManagedObjectContext
-    let entity: NSEntityDescription
+    private let appDelegate: AppDelegate
+    private var context: NSManagedObjectContext
+    private let entity: NSEntityDescription
 
     init(with appDelegate: AppDelegate) {
         self.appDelegate = appDelegate
@@ -55,19 +52,12 @@ class CoreDataService: CoreDataProtocol {
     }
     
     func saveSong(_ song: Song, onSuccess: @escaping (Bool) -> Void, onFailure: @escaping (Error) -> Void) {
-        // If you use this API: NSManagedObject(context: context) for creating a Songs object,
-        // you'll be able to have strongly typed Songs object and not rely on string keys for setting it's properties.
-        let newSong = NSManagedObject(entity: self.entity, insertInto: self.context)
-        newSong.setValue(song.artistName, forKey: SongKeys.artistName.rawValue)
-        newSong.setValue(song.trackName, forKey: SongKeys.trackName.rawValue)
-        newSong.setValue(song.artworkUrl100, forKey: SongKeys.artworkUrl100.rawValue)
-        newSong.setValue(song.primaryGenreName, forKey: SongKeys.primaryGenreName.rawValue)
-        do {
-            try context.save()
-            onSuccess(true)
-        } catch {
-            onFailure(error)
-        }
+        let entity = NSEntityDescription.entity(forEntityName: "Songs", in: self.context)
+        let record = SongMO(entity: entity!, insertInto: self.context)
+        record.artistName = song.artistName
+        record.trackName = song.trackName
+        record.artworkUrl100 = song.artworkUrl100
+        record.primaryGenreName = song.primaryGenreName
     }
     
     func sortSongsBy(_ songDataType: SongKeys, _ ascending: Bool, onSuccess: @escaping ([Song]) -> Void, onFailure: @escaping (Error) -> Void) {
