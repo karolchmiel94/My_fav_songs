@@ -39,32 +39,25 @@ class SavedSongsViewController: UIViewController {
     }
     
     func setVM() {
-        viewModel.showAlertClosure = { 
+        viewModel.showAlertClosure = { (error) in
             guard let vc = self as SavedSongsViewController? else {
                 return
             }
             DispatchQueue.main.async {
-                if let message = vc.viewModel.alertMessage {
-                    vc.showAlert(with: message)
-                    vc.showEmptyListLabel()
-                }
+                vc.showEmptyListLabel()
+                vc.showAlert(with: error.localizedDescription)
             }
         }
         
-        viewModel.updateLoadingStatus = {
+        viewModel.updateLoadingStatus = { (isLoading) in
             guard let vc = self as SavedSongsViewController? else {
                 return
             }
             DispatchQueue.main.async {
-                let isLoading = vc.viewModel.isLoading
                 if isLoading {
                     vc.showLoadingIndicator()
                 } else {
-                    if (vc.viewModel.numberOfCells) > 0 {
-                        vc.showTableView()
-                    } else {
-                        vc.showEmptyListLabel()
-                    }
+                    vc.viewModel.getNumberOfCells() > 0 ? vc.showTableView() : vc.showEmptyListLabel()
                 }
             }
 
@@ -121,14 +114,17 @@ class SavedSongsViewController: UIViewController {
         self.present(alert, animated: true, completion: nil)
     }
     
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "SongsFilterViewController" {
+            let vc = segue.destination as? SongsFiltersViewController
+            vc?.delegate = viewModel
+        }
     }
 }
 
 extension SavedSongsViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return viewModel.numberOfCells;
+        return viewModel.getNumberOfCells();
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

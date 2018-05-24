@@ -34,6 +34,7 @@
 		3CBFFAB920ACCF3700136178 /* WebService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CBFFAB820ACCF3700136178 /* WebService.swift */; };
 		3CBFFABC20ACD6F100136178 /* Song.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CBFFABB20ACD6F100136178 /* Song.swift */; };
 		3CBFFABE20ACD89400136178 /* ResultData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CBFFABD20ACD89400136178 /* ResultData.swift */; };
+		3CFEB7B320B734CC00D48E96 /* SongsFiltersViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CFEB7B220B734CC00D48E96 /* SongsFiltersViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -105,6 +106,7 @@
 		3CBFFAB820ACCF3700136178 /* WebService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebService.swift; sourceTree = "<group>"; };
 		3CBFFABB20ACD6F100136178 /* Song.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Song.swift; sourceTree = "<group>"; };
 		3CBFFABD20ACD89400136178 /* ResultData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultData.swift; sourceTree = "<group>"; };
+		3CFEB7B220B734CC00D48E96 /* SongsFiltersViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongsFiltersViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -156,6 +158,7 @@
 			isa = PBXGroup;
 			children = (
 				3C56850720AE53AF00DBAA46 /* SongsFiltersViewController.swift */,
+				3CFEB7B220B734CC00D48E96 /* SongsFiltersViewModel.swift */,
 			);
 			path = SongsFilters;
 			sourceTree = "<group>";
@@ -399,6 +402,7 @@
 				3CBFFAB920ACCF3700136178 /* WebService.swift in Sources */,
 				3C9DDDC920AB7CD900D72ABE /* SavedSongsViewController.swift in Sources */,
 				3C0095FC20ADEF1B0017E6A6 /* SongsSearchViewModel.swift in Sources */,
+				3CFEB7B320B734CC00D48E96 /* SongsFiltersViewModel.swift in Sources */,
 				3C9DDDC720AB7CCB00D72ABE /* SongsSearchViewController.swift in Sources */,
 				3C9DDDA820AA13BB00D72ABE /* My_fav_songs.xcdatamodeld in Sources */,
 				3C9DDDA020AA13BB00D72ABE /* AppDelegate.swift in Sources */,

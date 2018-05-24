@@ -53,7 +53,7 @@
                     <navigationItem key="navigationItem" title="Favourite Songs" id="EYf-Xv-liE">
                         <barButtonItem key="rightBarButtonItem" title="Filter" id="egB-ms-1kE">
                             <connections>
-                                <segue destination="Gcj-mR-NSQ" kind="presentation" id="Wxh-M9-ggi"/>
+                                <segue destination="Gcj-mR-NSQ" kind="presentation" identifier="SongsFilterViewController" id="Wxh-M9-ggi"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>

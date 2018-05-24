@@ -35,23 +35,20 @@ class SongsSearchViewController: UIViewController {
     }
     
     func setVM() {
-        viewModel.showAlertClosure = {
+        viewModel.showAlertClosure = { (error) in
             guard let vc = self as SongsSearchViewController? else {
                 return
             }
             DispatchQueue.main.async {
-                if let message = vc.viewModel.alertMessage {
-                    vc.showAlert(with: message)
-                }
+                vc.showAlert(with: error.localizedDescription)
             }
         }
         
-        viewModel.updateLoadingStatus = {
+        viewModel.updateLoadingStatus = { (isLoading) in
             guard let vc = self as SongsSearchViewController? else {
                 return
             }
             DispatchQueue.main.async {
-                let isLoading = vc.viewModel.isLoading
                 if isLoading {
                     vc.showLoadingIndicator()
                 } else {
@@ -108,7 +105,7 @@ class SongsSearchViewController: UIViewController {
                                                     message: message,
                                                     preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
-        alert.show(self, sender: nil)
+        self.present(alert, animated: true, completion: nil)
     }
     
     override func didReceiveMemoryWarning() {
@@ -118,7 +115,7 @@ class SongsSearchViewController: UIViewController {
 
 extension SongsSearchViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return viewModel.numberOfCells;
+        return viewModel.getNumberOfCells();
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

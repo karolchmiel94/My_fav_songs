@@ -24,7 +24,7 @@ import Foundation
 class SavedSongsViewModel {
     
     private var data = [Song]()
-    let coreDataService: CoreDataProtocol
+    private let coreDataService: CoreDataProtocol
     
     private var cellViewModels: [SongListCellViewModel] = [SongListCellViewModel]() {
         didSet {
@@ -32,33 +32,23 @@ class SavedSongsViewModel {
         }
     }
     
-    var isLoading: Bool = false {
+    private var isLoading: Bool = false {
         didSet {
-            self.updateLoadingStatus?()
+            self.updateLoadingStatus?(isLoading)
         }
     }
     
-    var alertMessage: String? {
-        didSet {
-            self.showAlertClosure?()
-        }
-    }
-    
-    var deletingSong: Bool = false {
+    private var deletingSong: Bool = false {
         didSet {
             self.deleteSongModal?()
         }
     }
     
-    var numberOfCells: Int {
-        return cellViewModels.count
-    }
-    
-    var selectedSong: Song?
+    private var selectedSong: Song?
     
     var reloadTableViewClosure: (()->())?
-    var showAlertClosure: (()->())?
-    var updateLoadingStatus: (()->())?
+    var showAlertClosure: ((Error)->Void)?
+    var updateLoadingStatus: ((Bool)->Void)?
     var deleteSongModal: (()->())?
     
     init(appDelegate: AppDelegate) {
@@ -71,13 +61,16 @@ class SavedSongsViewModel {
             self.processFetchedSongs(songs)
             self.isLoading = false
         }) { (error) in
-            // Use error.localizedDescription
-            self.alertMessage = error as? String
+            self.showAlertClosure?(error)
         }
     }
     
     func getCellViewModel(at indexPath: IndexPath) -> SongListCellViewModel {
         return cellViewModels[indexPath.row]
+    }
+    
+    func getNumberOfCells() -> Int {
+        return cellViewModels.count
     }
     
     func createCellViewModel(song: Song) -> SongListCellViewModel {
@@ -107,20 +100,20 @@ extension SavedSongsViewModel {
         coreDataService.deleteSong(song, onSuccess: { (success) in
             self.deletingSong = false
         }) { (error) in
-            self.alertMessage = error as? String
+            self.showAlertClosure?(error)
         }
     }
     
 }
 
-extension SavedSongsViewModel: DataDelegate {
+extension SavedSongsViewModel: SongsFiltersDelegate {
     func filterSongsBy(_ songDataType: SongKeys, _ ascending: Bool) {
         self.isLoading = true
         coreDataService.sortSongsBy(songDataType, ascending, onSuccess: { (songs) in
             self.processFetchedSongs(songs)
             self.isLoading = false
         }) { (error) in
-            self.alertMessage = error as? String
+            self.showAlertClosure?(error)
         }
     }
     
@@ -130,7 +123,7 @@ extension SavedSongsViewModel: DataDelegate {
             self.processFetchedSongs(songs)
             self.isLoading = false
         }) { (error) in
-            self.alertMessage = error as? String
+            self.showAlertClosure?(error)
         }
     }
     
