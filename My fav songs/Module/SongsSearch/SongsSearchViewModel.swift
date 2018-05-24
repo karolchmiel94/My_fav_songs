@@ -8,11 +8,12 @@
 
 import Foundation
 
+// Take a look at comments from SavedSongsViewModel
 class SongsSearchViewModel {
     
     private var data: ResultData
     let apiService: APIProtocol
-    let coreDataService: CoreDataProtocol
+    let coreDataService: CoreDataOperationsProtocol
     
     private var cellViewModels: [SongListCellViewModel] = [SongListCellViewModel]() {
         didSet {
@@ -20,33 +21,23 @@ class SongsSearchViewModel {
         }
     }
     
-    var isLoading: Bool = false {
+    private var isLoading: Bool = false {
         didSet {
-            self.updateLoadingStatus?()
+            self.updateLoadingStatus?(isLoading)
         }
     }
     
-    var alertMessage: String? {
-        didSet {
-            self.showAlertClosure?()
-        }
-    }
-    
-    var savingSong: Bool = false {
+    private var savingSong: Bool = false {
         didSet {
             self.saveSongModal?()
         }
     }
     
-    var numberOfCells: Int {
-        return cellViewModels.count
-    }
-    
     var selectedSong: Song?
     
     var reloadTableViewClosure: (()->())?
-    var showAlertClosure: (()->())?
-    var updateLoadingStatus: (()->())?
+    var showAlertClosure: ((Error)->Void)?
+    var updateLoadingStatus: ((Bool)->(Void))?
     var saveSongModal: (()->())?
     
     init(apiService: APIProtocol = WebService(), appDelegate: AppDelegate) {
@@ -61,12 +52,16 @@ class SongsSearchViewModel {
             self.processFetchedSongs(resultData)
             self.isLoading = false
         }, onFailure: { (error) in
-            self.alertMessage = error as? String
+            self.showAlertClosure?(error)
         })
     }
     
     func getCellViewModel(at indexPath: IndexPath) -> SongListCellViewModel {
         return cellViewModels[indexPath.row]
+    }
+    
+    func getNumberOfCells() -> Int {
+        return cellViewModels.count
     }
     
     func createCellViewModel(song: Song) -> SongListCellViewModel {
@@ -94,7 +89,7 @@ extension SongsSearchViewModel {
         coreDataService.saveSong(song, onSuccess: { (isSuccess) in
             self.savingSong = false
         }) { (error) in
-            print(error)
+            self.showAlertClosure?(error)
         }
     }
 }

@@ -8,18 +8,20 @@
 
 import UIKit
 
-protocol DataDelegate {
+// Consider introducing another layer, something that contains filters state.
+// This filters state object could be passed to the filters screen so that filters screen
+// can fill it's fields with the current state (imagine that user made a typo and only wants to correct it,
+// without entering the whole config from scratch)
+// On the other side, the saved songs VC could somehow observe the changes in the filters state object and reload itself once
+// it changes. This would also loosen the dependencies beetween filters vc and savedsongs vc.
+protocol SongsFiltersDelegate {
     func filterSongsBy(_ songDataType: SongKeys, _ ascending: Bool)
     func searchSongBy(_ text: String, _ songDataType: SongKeys)
 }
 
 class SongsFiltersViewController: UIViewController {
     
-    let pickerComponents = [SongKeys.artistName,
-                            SongKeys.trackName,
-                            SongKeys.primaryGenreName]
-    var selectedKey: SongKeys?
-    var delegate: DataDelegate?
+    var delegate: SongsFiltersDelegate?
     
     @IBOutlet weak var mainView: UIView!
     @IBOutlet weak var filterView: UIStackView!
@@ -29,10 +31,13 @@ class SongsFiltersViewController: UIViewController {
     @IBOutlet weak var ascendingSwitch: UISwitch!
     @IBOutlet weak var pickerView: UIPickerView!
     
+    lazy var viewModel: SongsFiltersViewModel = {
+        return SongsFiltersViewModel()
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.mainView.roundCorners(with: 10.0)
-        selectedKey = pickerComponents[0]
+        mainView.roundCorners(with: 10.0)
         searchTextField.delegate = self
     }
 
@@ -59,10 +64,10 @@ class SongsFiltersViewController: UIViewController {
         if searchTextField.alpha == 1.0 {
             if let text = searchTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines) {
                 if text.isEmpty { return }
-                delegate?.searchSongBy(text, selectedKey!)
+                delegate?.searchSongBy(text, viewModel.getSelectedComponent())
             }
         } else {
-            delegate?.filterSongsBy(selectedKey!, ascendingSwitch.isOn)
+            delegate?.filterSongsBy(viewModel.getSelectedComponent(), ascendingSwitch.isOn)
         }
         self.dismiss(animated: true, completion: nil)
     }
@@ -83,15 +88,15 @@ extension SongsFiltersViewController: UIPickerViewDelegate, UIPickerViewDataSour
     }
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return pickerComponents.count
+        return viewModel.numberOfPickerComponents()
     }
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return pickerComponents[row].prettyDescription()
+        return viewModel.getPickerComponent(at: row).prettyDescription()
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        selectedKey = pickerComponents[row]
+        viewModel.setSelectedKey(at: row)
     }
     
 }

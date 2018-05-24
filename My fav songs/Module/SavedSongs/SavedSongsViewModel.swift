@@ -8,10 +8,23 @@
 
 import Foundation
 
+// We have a couple of doubts about the architecture of this VM.
+// What you're doing here is, using example of alertMessage:
+// - create a mutable non-private String property, which runs optional `showAlertClosure` on state changes
+// - inside the VC, `showAlertClosure` is configured to read the value of `alertMessage` and show the alert with it.
+// This seems both a bit overcomplicated and not 100% safe.
+// Consider refactoring this in a way to remove mutable state or at least make it private, and taking bigger advantage
+// of closures.
+// Using example of `alertMessage`, you could:
+// - remove `alertMessage` property
+// - change `showAlertClosure` type to ((Error) -> Void)?
+// - assign showing alert to this closure from the VC
+// - change all lines `self.alertMessage = error as? String` to `self.showAlertClosure(error)`
+// However, if you feel that the solution we're proposing is for some reason worse that the one here, feel free to explain to us why :)
 class SavedSongsViewModel {
     
     private var data = [Song]()
-    let coreDataService: CoreDataProtocol
+    private let coreDataService: CoreDataOperationsProtocol
     
     private var cellViewModels: [SongListCellViewModel] = [SongListCellViewModel]() {
         didSet {
@@ -19,33 +32,23 @@ class SavedSongsViewModel {
         }
     }
     
-    var isLoading: Bool = false {
+    private var isLoading: Bool = false {
         didSet {
-            self.updateLoadingStatus?()
+            self.updateLoadingStatus?(isLoading)
         }
     }
     
-    var alertMessage: String? {
-        didSet {
-            self.showAlertClosure?()
-        }
-    }
-    
-    var deletingSong: Bool = false {
+    private var deletingSong: Bool = false {
         didSet {
             self.deleteSongModal?()
         }
     }
     
-    var numberOfCells: Int {
-        return cellViewModels.count
-    }
-    
-    var selectedSong: Song?
+    private var selectedSong: Song?
     
     var reloadTableViewClosure: (()->())?
-    var showAlertClosure: (()->())?
-    var updateLoadingStatus: (()->())?
+    var showAlertClosure: ((Error)->Void)?
+    var updateLoadingStatus: ((Bool)->Void)?
     var deleteSongModal: (()->())?
     
     init(appDelegate: AppDelegate) {
@@ -58,12 +61,16 @@ class SavedSongsViewModel {
             self.processFetchedSongs(songs)
             self.isLoading = false
         }) { (error) in
-            self.alertMessage = error as? String
+            self.showAlertClosure?(error)
         }
     }
     
     func getCellViewModel(at indexPath: IndexPath) -> SongListCellViewModel {
         return cellViewModels[indexPath.row]
+    }
+    
+    func getNumberOfCells() -> Int {
+        return cellViewModels.count
     }
     
     func createCellViewModel(song: Song) -> SongListCellViewModel {
@@ -75,6 +82,8 @@ class SavedSongsViewModel {
     
     private func processFetchedSongs(_ data: [Song]) {
         self.data = data
+        
+        // Try to fit the lines below into one line with some of Swift's magic ;)
         var vms = [SongListCellViewModel]()
         for song in data {
             vms.append(createCellViewModel(song: song))
@@ -91,20 +100,20 @@ extension SavedSongsViewModel {
         coreDataService.deleteSong(song, onSuccess: { (success) in
             self.deletingSong = false
         }) { (error) in
-            self.alertMessage = error as? String
+            self.showAlertClosure?(error)
         }
     }
     
 }
 
-extension SavedSongsViewModel: DataDelegate {
+extension SavedSongsViewModel: SongsFiltersDelegate {
     func filterSongsBy(_ songDataType: SongKeys, _ ascending: Bool) {
         self.isLoading = true
         coreDataService.sortSongsBy(songDataType, ascending, onSuccess: { (songs) in
             self.processFetchedSongs(songs)
             self.isLoading = false
         }) { (error) in
-            self.alertMessage = error as? String
+            self.showAlertClosure?(error)
         }
     }
     
@@ -114,7 +123,7 @@ extension SavedSongsViewModel: DataDelegate {
             self.processFetchedSongs(songs)
             self.isLoading = false
         }) { (error) in
-            self.alertMessage = error as? String
+            self.showAlertClosure?(error)
         }
     }
     

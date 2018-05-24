@@ -25,66 +25,85 @@ class SavedSongsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        initView()
-        initVM()
+        setViews()
+        setVM()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         viewModel.fetchSongs()
-    }
-
-    func initView() {
-        songsTableView.isHidden = true
-        activityIndicator.isHidden = true
+        super.viewWillAppear(true)
     }
     
-    func initVM() {
-        viewModel.showAlertClosure = { [weak self] () in
+    func setViews() {
+        showEmptyListLabel()
+    }
+    
+    func setVM() {
+        viewModel.showAlertClosure = { (error) in
+            guard let vc = self as SavedSongsViewController? else {
+                return
+            }
             DispatchQueue.main.async {
-                if let message = self?.viewModel.alertMessage {
-                    self?.showAlert(with: message)
-                }
+                vc.showEmptyListLabel()
+                vc.showAlert(with: error.localizedDescription)
             }
         }
         
-        viewModel.updateLoadingStatus = { [weak self] in
+        viewModel.updateLoadingStatus = { (isLoading) in
+            guard let vc = self as SavedSongsViewController? else {
+                return
+            }
             DispatchQueue.main.async {
-                let isLoading = self?.viewModel.isLoading ?? false
                 if isLoading {
-                    self?.noSongsLabel.isHidden = true
-                    self?.songsTableView.isHidden = true
-                    self?.activityIndicator.isHidden = false
-                    self?.activityIndicator.startAnimating()
+                    vc.showLoadingIndicator()
                 } else {
-                    if (self?.viewModel.numberOfCells)! > 0 {
-                        self?.noSongsLabel.isHidden = true
-                        self?.songsTableView.isHidden = false
-                    } else {
-                        self?.noSongsLabel.isHidden = false
-                        self?.songsTableView.isHidden = true
-                    }
-                    self?.activityIndicator.isHidden = true
-                    self?.activityIndicator.stopAnimating()
+                    vc.viewModel.getNumberOfCells() > 0 ? vc.showTableView() : vc.showEmptyListLabel()
+                }
+            }
+
+        }
+        
+        viewModel.reloadTableViewClosure = {
+            if let vc = self as SavedSongsViewController? {
+                DispatchQueue.main.async {
+                    vc.songsTableView.reloadData()
                 }
             }
         }
         
-        viewModel.reloadTableViewClosure = { [weak self] in
-            DispatchQueue.main.async {
-                self?.songsTableView.reloadData()
+        viewModel.deleteSongModal = {
+            guard let vc = self as SavedSongsViewController? else {
+                return
             }
-        }
-        
-        viewModel.deleteSongModal = { [weak self] in
             DispatchQueue.main.async {
-                let modalView = KCHModalStatusView(frame: (self?.view.frame)!)
+                let modalView = KCHModalStatusView(frame: (vc.view.frame))
                 modalView.set(image: UIImage(named: "deleteIcon")!)
                 modalView.set(title: "Deleting song")
-                self?.view.addSubview(modalView)
-                self?.viewModel.fetchSongs()
+                vc.view.addSubview(modalView)
+                vc.viewModel.fetchSongs()
             }
         }
-        
+    }
+    
+    func showEmptyListLabel() {
+        songsTableView.isHidden = true
+        activityIndicator.stopAnimating()
+        activityIndicator.isHidden = true
+        noSongsLabel.isHidden = false
+    }
+    
+    func showLoadingIndicator() {
+        noSongsLabel.isHidden = true
+        songsTableView.isHidden = true
+        activityIndicator.isHidden = false
+        activityIndicator.startAnimating()
+    }
+    
+    func showTableView() {
+        noSongsLabel.isHidden = true
+        activityIndicator.isHidden = true
+        activityIndicator.stopAnimating()
+        songsTableView.isHidden = false
     }
     
     func showAlert(with message: String) {
@@ -92,25 +111,20 @@ class SavedSongsViewController: UIViewController {
                                       message: message,
                                       preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
-        alert.show(self, sender: nil)
+        self.present(alert, animated: true, completion: nil)
     }
     
-    @IBAction func showModal(_ sender: Any) {
-        let modalVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "SongsFiltersViewController") as! SongsFiltersViewController
-        modalVC.delegate = viewModel
-        modalVC.modalPresentationStyle = .overFullScreen
-        modalVC.modalTransitionStyle = .crossDissolve
-        self.present(modalVC, animated: true, completion: nil)
-    }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "SongsFilterViewController" {
+            let vc = segue.destination as? SongsFiltersViewController
+            vc?.delegate = viewModel
+        }
     }
 }
 
 extension SavedSongsViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return viewModel.numberOfCells;
+        return viewModel.getNumberOfCells();
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -141,4 +155,3 @@ extension SavedSongsViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
 }
-

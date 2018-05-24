@@ -14,12 +14,12 @@
 		3C00961020AE35850017E6A6 /* saveIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 3C00960F20AE35850017E6A6 /* saveIcon.png */; };
 		3C00961720AE37210017E6A6 /* KCHModalStatus.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3C00961620AE37180017E6A6 /* KCHModalStatus.framework */; };
 		3C00961820AE37210017E6A6 /* KCHModalStatus.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 3C00961620AE37180017E6A6 /* KCHModalStatus.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		3C4BC50C20B5FBCA0053C8A2 /* SongListCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C4BC50B20B5FBCA0053C8A2 /* SongListCellViewModel.swift */; };
 		3C56850520AE4E9900DBAA46 /* deleteIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 3C56850420AE4E9900DBAA46 /* deleteIcon.png */; };
 		3C56850820AE53AF00DBAA46 /* SongsFiltersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C56850720AE53AF00DBAA46 /* SongsFiltersViewController.swift */; };
 		3C84A52220AE705400DB8807 /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C84A52120AE705400DB8807 /* UIViewExtension.swift */; };
 		3C84A52920AE86DF00DB8807 /* SongsSearchViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C84A52820AE86DF00DB8807 /* SongsSearchViewModelTests.swift */; };
 		3C9DDDA020AA13BB00D72ABE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C9DDD9F20AA13BB00D72ABE /* AppDelegate.swift */; };
-		3C9DDDA220AA13BB00D72ABE /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C9DDDA120AA13BB00D72ABE /* ViewController.swift */; };
 		3C9DDDA520AA13BB00D72ABE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3C9DDDA320AA13BB00D72ABE /* Main.storyboard */; };
 		3C9DDDA820AA13BB00D72ABE /* My_fav_songs.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 3C9DDDA620AA13BB00D72ABE /* My_fav_songs.xcdatamodeld */; };
 		3C9DDDAA20AA13BC00D72ABE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3C9DDDA920AA13BC00D72ABE /* Assets.xcassets */; };
@@ -33,6 +33,8 @@
 		3CBFFAB920ACCF3700136178 /* WebService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CBFFAB820ACCF3700136178 /* WebService.swift */; };
 		3CBFFABC20ACD6F100136178 /* Song.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CBFFABB20ACD6F100136178 /* Song.swift */; };
 		3CBFFABE20ACD89400136178 /* ResultData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CBFFABD20ACD89400136178 /* ResultData.swift */; };
+		3CFEB7B320B734CC00D48E96 /* SongsFiltersViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CFEB7B220B734CC00D48E96 /* SongsFiltersViewModel.swift */; };
+		3CFEB7B720B7627800D48E96 /* SongMO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CFEB7B620B7627800D48E96 /* SongMO.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -80,13 +82,13 @@
 		3C00960020AE29FD0017E6A6 /* CoreDataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataService.swift; sourceTree = "<group>"; };
 		3C00960F20AE35850017E6A6 /* saveIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = saveIcon.png; sourceTree = "<group>"; };
 		3C00961120AE37170017E6A6 /* KCHModalStatus.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = KCHModalStatus.xcodeproj; sourceTree = "<group>"; };
+		3C4BC50B20B5FBCA0053C8A2 /* SongListCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongListCellViewModel.swift; sourceTree = "<group>"; };
 		3C56850420AE4E9900DBAA46 /* deleteIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = deleteIcon.png; sourceTree = "<group>"; };
 		3C56850720AE53AF00DBAA46 /* SongsFiltersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongsFiltersViewController.swift; sourceTree = "<group>"; };
 		3C84A52120AE705400DB8807 /* UIViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
 		3C84A52820AE86DF00DB8807 /* SongsSearchViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongsSearchViewModelTests.swift; sourceTree = "<group>"; };
 		3C9DDD9C20AA13BB00D72ABE /* My fav songs.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "My fav songs.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3C9DDD9F20AA13BB00D72ABE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		3C9DDDA120AA13BB00D72ABE /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		3C9DDDA420AA13BB00D72ABE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		3C9DDDA720AA13BB00D72ABE /* My_fav_songs.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = My_fav_songs.xcdatamodel; sourceTree = "<group>"; };
 		3C9DDDA920AA13BC00D72ABE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -103,6 +105,8 @@
 		3CBFFAB820ACCF3700136178 /* WebService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebService.swift; sourceTree = "<group>"; };
 		3CBFFABB20ACD6F100136178 /* Song.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Song.swift; sourceTree = "<group>"; };
 		3CBFFABD20ACD89400136178 /* ResultData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultData.swift; sourceTree = "<group>"; };
+		3CFEB7B220B734CC00D48E96 /* SongsFiltersViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongsFiltersViewModel.swift; sourceTree = "<group>"; };
+		3CFEB7B620B7627800D48E96 /* SongMO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongMO.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -154,6 +158,7 @@
 			isa = PBXGroup;
 			children = (
 				3C56850720AE53AF00DBAA46 /* SongsFiltersViewController.swift */,
+				3CFEB7B220B734CC00D48E96 /* SongsFiltersViewModel.swift */,
 			);
 			path = SongsFilters;
 			sourceTree = "<group>";
@@ -185,7 +190,6 @@
 				3CBFFABA20ACD6D100136178 /* Model */,
 				3CBFFAB720ACCF0300136178 /* Service */,
 				3C0095FD20ADFBDB0017E6A6 /* Extensions */,
-				3C9DDDA120AA13BB00D72ABE /* ViewController.swift */,
 				3C9DDDA320AA13BB00D72ABE /* Main.storyboard */,
 				3C00960E20AE35710017E6A6 /* Icons */,
 				3C9DDDA920AA13BC00D72ABE /* Assets.xcassets */,
@@ -241,6 +245,7 @@
 			children = (
 				3C9DDDCB20AB887200D72ABE /* SongCell.xib */,
 				3C9DDDCD20AB8B8E00D72ABE /* SongTableViewCell.swift */,
+				3C4BC50B20B5FBCA0053C8A2 /* SongListCellViewModel.swift */,
 			);
 			path = SongsTableViewCell;
 			sourceTree = "<group>";
@@ -258,6 +263,7 @@
 			isa = PBXGroup;
 			children = (
 				3CBFFABB20ACD6F100136178 /* Song.swift */,
+				3CFEB7B620B7627800D48E96 /* SongMO.swift */,
 				3CBFFABD20ACD89400136178 /* ResultData.swift */,
 			);
 			path = Model;
@@ -387,14 +393,16 @@
 			files = (
 				3C84A52220AE705400DB8807 /* UIViewExtension.swift in Sources */,
 				3C9DDDCE20AB8B8E00D72ABE /* SongTableViewCell.swift in Sources */,
+				3CFEB7B720B7627800D48E96 /* SongMO.swift in Sources */,
 				3C00960120AE29FD0017E6A6 /* CoreDataService.swift in Sources */,
 				3C0095FA20AD72690017E6A6 /* SavedSongsViewModel.swift in Sources */,
 				3C0095FF20ADFC010017E6A6 /* UIImageViewExtension.swift in Sources */,
+				3C4BC50C20B5FBCA0053C8A2 /* SongListCellViewModel.swift in Sources */,
 				3C56850820AE53AF00DBAA46 /* SongsFiltersViewController.swift in Sources */,
-				3C9DDDA220AA13BB00D72ABE /* ViewController.swift in Sources */,
 				3CBFFAB920ACCF3700136178 /* WebService.swift in Sources */,
 				3C9DDDC920AB7CD900D72ABE /* SavedSongsViewController.swift in Sources */,
 				3C0095FC20ADEF1B0017E6A6 /* SongsSearchViewModel.swift in Sources */,
+				3CFEB7B320B734CC00D48E96 /* SongsFiltersViewModel.swift in Sources */,
 				3C9DDDC720AB7CCB00D72ABE /* SongsSearchViewController.swift in Sources */,
 				3C9DDDA820AA13BB00D72ABE /* My_fav_songs.xcdatamodeld in Sources */,
 				3C9DDDA020AA13BB00D72ABE /* AppDelegate.swift in Sources */,

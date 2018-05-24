@@ -25,56 +25,79 @@ class SongsSearchViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        initView()
-        initVM()
+        setViews()
+        setVM()
     }
     
-    func initView() {
+    func setViews() {
         searchBar.delegate = self
-        songsTableView.isHidden = true
-        activityIndicator.isHidden = true
+        showEmptyListLabel()
     }
     
-    func initVM() {
-        viewModel.showAlertClosure = { [weak self] () in
+    func setVM() {
+        viewModel.showAlertClosure = { (error) in
+            guard let vc = self as SongsSearchViewController? else {
+                return
+            }
             DispatchQueue.main.async {
-                if let message = self?.viewModel.alertMessage {
-                    self?.showAlert(with: message)
-                }
+                vc.showAlert(with: error.localizedDescription)
             }
         }
         
-        viewModel.updateLoadingStatus = { [weak self] () in
+        viewModel.updateLoadingStatus = { (isLoading) in
+            guard let vc = self as SongsSearchViewController? else {
+                return
+            }
             DispatchQueue.main.async {
-                let isLoading = self?.viewModel.isLoading ?? false
                 if isLoading {
-                    self?.emptyListLabel.isHidden = true
-                    self?.songsTableView.isHidden = true
-                    self?.activityIndicator.isHidden = false
-                    self?.activityIndicator.startAnimating()
+                    vc.showLoadingIndicator()
                 } else {
-                    self?.emptyListLabel.isHidden = true
-                    self?.songsTableView.isHidden = false
-                    self?.activityIndicator.isHidden = true
-                    self?.activityIndicator.stopAnimating()
+                    vc.showTableView()
                 }
             }
         }
         
-        viewModel.reloadTableViewClosure = { [weak self] in
+        viewModel.reloadTableViewClosure = {
+            guard let vc = self as SongsSearchViewController? else {
+                return
+            }
             DispatchQueue.main.async {
-                self?.songsTableView.reloadData()
+                vc.songsTableView.reloadData()
             }
         }
         
-        viewModel.saveSongModal = { [weak self] in
+        viewModel.saveSongModal = {
+            guard let vc = self as SongsSearchViewController? else {
+                return
+            }
             DispatchQueue.main.async {
-                let modalView = KCHModalStatusView(frame: (self?.view.frame)!)
+                let modalView = KCHModalStatusView(frame: (vc.view.frame))
                 modalView.set(image: UIImage(named: "saveIcon")!)
                 modalView.set(title: "Saving song")
-                self?.view.addSubview(modalView)
+                vc.view.addSubview(modalView)
             }
         }
+    }
+    
+    func showEmptyListLabel() {
+        songsTableView.isHidden = true
+        activityIndicator.stopAnimating()
+        activityIndicator.isHidden = true
+        emptyListLabel.isHidden = false
+    }
+    
+    func showLoadingIndicator() {
+        emptyListLabel.isHidden = true
+        songsTableView.isHidden = true
+        activityIndicator.isHidden = false
+        activityIndicator.startAnimating()
+    }
+    
+    func showTableView() {
+        emptyListLabel.isHidden = true
+        activityIndicator.isHidden = true
+        activityIndicator.stopAnimating()
+        songsTableView.isHidden = false
     }
 
     func showAlert(with message: String) {
@@ -82,7 +105,7 @@ class SongsSearchViewController: UIViewController {
                                                     message: message,
                                                     preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
-        alert.show(self, sender: nil)
+        self.present(alert, animated: true, completion: nil)
     }
     
     override func didReceiveMemoryWarning() {
@@ -92,7 +115,7 @@ class SongsSearchViewController: UIViewController {
 
 extension SongsSearchViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return viewModel.numberOfCells;
+        return viewModel.getNumberOfCells();
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

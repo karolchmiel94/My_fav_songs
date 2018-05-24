@@ -46,7 +46,7 @@ class SongsSearchViewModelTests: XCTestCase {
         mockAPIService.fetchSuccess()
         
         // Number of cell view model is equal to the number of photos
-        XCTAssertEqual(viewModel.numberOfCells, result.results.count)
+        XCTAssertEqual(viewModel.getNumberOfCells(), result.results.count)
         
         // XCTAssert reload closure triggered
         wait(for: [expect], timeout: 1.0)
