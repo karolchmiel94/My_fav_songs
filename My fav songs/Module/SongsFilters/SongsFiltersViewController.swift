@@ -37,8 +37,34 @@ class SongsFiltersViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setView()
+        setVM()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        viewModel.fetchPickerComponents()
+        super.viewWillAppear(true)
+    }
+    private func setView() {
         mainView.roundCorners(with: 10.0)
         searchTextField.delegate = self
+    }
+    
+    private func setVM() {
+        viewModel.restoreFilters = { (keyIndex, inputData, isDescending,view) in
+            guard let vc = self as SongsFiltersViewController? else {
+                return
+            }
+            DispatchQueue.main.async {
+                vc.searchTextField.text = inputData
+                vc.ascendingSwitch.isOn = isDescending
+                vc.pickerView.selectRow(keyIndex, inComponent: 0, animated: true)
+                if (view == SongsFiltersView.filter.hashValue) {
+                    vc.replace(currentView: vc.searchTextField, with: vc.filterView)
+                }
+            }
+            
+        }
     }
 
     @IBAction func filterButtonAction(_ sender: Any) {
@@ -64,12 +90,20 @@ class SongsFiltersViewController: UIViewController {
         if searchTextField.alpha == 1.0 {
             if let text = searchTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines) {
                 if text.isEmpty { return }
+                viewModel.saveSearch(text)
                 delegate?.searchSongBy(text, viewModel.getSelectedComponent())
+                viewModel.saveCurrentView(SongsFiltersView.search)
             }
         } else {
             delegate?.filterSongsBy(viewModel.getSelectedComponent(), ascendingSwitch.isOn)
+            viewModel.saveCurrentView(SongsFiltersView.filter)
         }
+        
         self.dismiss(animated: true, completion: nil)
+    }
+    
+    @IBAction func switchChangeAction(_ sender: Any) {
+        viewModel.saveSwitchChange(ascendingSwitch.isOn)
     }
     
     @IBAction func cancelAction(_ sender: Any) {

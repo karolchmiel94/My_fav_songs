@@ -56,10 +56,10 @@ class SavedSongsViewModel {
     }
     
     func fetchSongs() {
-        self.isLoading = true
+        self.updateLoadingStatus?(true)
         coreDataService.fetchSongs(onSuccess: { (songs) in
             self.processFetchedSongs(songs)
-            self.isLoading = false
+            self.updateLoadingStatus?(false)
         }) { (error) in
             self.showAlertClosure?(error)
         }
