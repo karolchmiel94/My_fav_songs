@@ -15,9 +15,11 @@ class SongsFiltersViewModel {
                                               SongKeys.primaryGenreName]
     
     private var selectedComponent: SongKeys
+    private var songFilters = FiltersContent.shared()
     
     init() {
         self.selectedComponent = pickerComponents[0]
+        print(songFilters)
     }
     
     var loadPickerComponentsClosure: (([SongKeys])-> Void)?

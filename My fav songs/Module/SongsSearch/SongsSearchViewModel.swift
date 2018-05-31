@@ -27,12 +27,6 @@ class SongsSearchViewModel {
         }
     }
     
-    private var savingSong: Bool = false {
-        didSet {
-            self.saveSongModal?()
-        }
-    }
-    
     var selectedSong: Song?
     
     var reloadTableViewClosure: (()->())?
@@ -85,9 +79,8 @@ extension SongsSearchViewModel {
     func saveSong(at indexPath: Int) {
         let song = self.data.results[indexPath]
         self.selectedSong = song
-        self.savingSong = true
+        self.saveSongModal?()
         coreDataService.saveSong(song, onSuccess: { (isSuccess) in
-            self.savingSong = false
         }) { (error) in
             self.showAlertClosure?(error)
         }
