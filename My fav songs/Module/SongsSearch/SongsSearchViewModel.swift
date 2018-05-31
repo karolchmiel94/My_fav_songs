@@ -8,12 +8,11 @@
 
 import Foundation
 
-// Take a look at comments from SavedSongsViewModel
 class SongsSearchViewModel {
     
     private var data: ResultData
-    let apiService: APIProtocol
-    let coreDataService: CoreDataOperationsProtocol
+    private let apiService: APIProtocol
+    private let coreDataService: CoreDataOperationsProtocol
     
     private var cellViewModels: [SongListCellViewModel] = [SongListCellViewModel]() {
         didSet {
@@ -58,7 +57,7 @@ class SongsSearchViewModel {
         return cellViewModels.count
     }
     
-    func createCellViewModel(song: Song) -> SongListCellViewModel {
+    private func createCellViewModel(song: Song) -> SongListCellViewModel {
         return SongListCellViewModel(artistNameText: song.artistName,
                                      songTitleText: song.trackName,
                                      artworkUrl: song.artworkUrl100,

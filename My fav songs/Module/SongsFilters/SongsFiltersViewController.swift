@@ -58,7 +58,7 @@ class SongsFiltersViewController: UIViewController {
             DispatchQueue.main.async {
                 vc.searchTextField.text = inputData
                 vc.ascendingSwitch.isOn = isDescending
-                vc.pickerView.selectRow(keyIndex, inComponent: 0, animated: true)
+                vc.pickerView.selectRow(keyIndex, inComponent: 0, animated: false)
                 if (view == SongsFiltersView.filter.hashValue) {
                     vc.replace(currentView: vc.searchTextField, with: vc.filterView)
                 }

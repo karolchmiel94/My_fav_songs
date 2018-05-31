@@ -21,6 +21,10 @@ import Foundation
 // - assign showing alert to this closure from the VC
 // - change all lines `self.alertMessage = error as? String` to `self.showAlertClosure(error)`
 // However, if you feel that the solution we're proposing is for some reason worse that the one here, feel free to explain to us why :)
+
+// Cosidering your propositions, I have removed dumb and useless alertMessage and isLoading properties.
+// I have created closures for them which transfer to VC needed data.
+// However, I
 class SavedSongsViewModel {
     
     private var data = [Song]()

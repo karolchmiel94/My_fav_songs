@@ -16,8 +16,8 @@ class SongsSearchViewController: UIViewController {
     @IBOutlet weak var songsTableView: UITableView!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
-    let CELL_ID = "songCell"
-    let CELL_NIB_NAME = "SongCell"
+    private let CELL_ID = "songCell"
+    private let CELL_NIB_NAME = "SongCell"
     
     lazy var viewModel: SongsSearchViewModel = {
         return SongsSearchViewModel(appDelegate: UIApplication.shared.delegate as! AppDelegate)
@@ -29,12 +29,12 @@ class SongsSearchViewController: UIViewController {
         setVM()
     }
     
-    func setViews() {
+    private func setViews() {
         searchBar.delegate = self
         showEmptyListLabel()
     }
     
-    func setVM() {
+    private func setVM() {
         viewModel.showAlertClosure = { (error) in
             guard let vc = self as SongsSearchViewController? else {
                 return
@@ -79,38 +79,35 @@ class SongsSearchViewController: UIViewController {
         }
     }
     
-    func showEmptyListLabel() {
+    private func showEmptyListLabel() {
         songsTableView.isHidden = true
         activityIndicator.stopAnimating()
         activityIndicator.isHidden = true
         emptyListLabel.isHidden = false
     }
     
-    func showLoadingIndicator() {
+    private func showLoadingIndicator() {
         emptyListLabel.isHidden = true
         songsTableView.isHidden = true
         activityIndicator.isHidden = false
         activityIndicator.startAnimating()
     }
     
-    func showTableView() {
+    private func showTableView() {
         emptyListLabel.isHidden = true
         activityIndicator.isHidden = true
         activityIndicator.stopAnimating()
         songsTableView.isHidden = false
     }
 
-    func showAlert(with message: String) {
+    private func showAlert(with message: String) {
         let alert = UIAlertController(title: "Error",
                                                     message: message,
                                                     preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
         self.present(alert, animated: true, completion: nil)
     }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-    }
+
 }
 
 extension SongsSearchViewController: UITableViewDataSource, UITableViewDelegate {

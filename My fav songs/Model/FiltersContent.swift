@@ -14,18 +14,16 @@ enum SongsFiltersView {
 
 class FiltersContent {
     private static let sharedFiltersContent: FiltersContent = {
-        let filters = FiltersContent.init()
-        
-        return filters
+        return FiltersContent.init()
     }()
     
-    private let possibleSongKeys = [SongKeys.artistName,
+    let possibleSongKeys = [SongKeys.artistName,
                             SongKeys.trackName,
                             SongKeys.primaryGenreName]
-    private var selectedKey: SongKeys
-    private var inputValue: String
-    private var isDescending: Bool
-    private var view: SongsFiltersView
+    private(set) var selectedKey: SongKeys
+    private(set) var inputValue: String
+    private(set) var isDescending: Bool
+    private(set) var view: SongsFiltersView
     
     private init() {
         self.selectedKey = possibleSongKeys[0]
@@ -42,27 +40,15 @@ class FiltersContent {
         self.inputValue = inputValue
     }
     
-    func getPossibleSongKeys() -> [SongKeys] {
-        return possibleSongKeys
-    }
-    
     func getSongKeyAt(_ index: Int) -> SongKeys {
         return possibleSongKeys[index]
     }
-    
-    func getSelectedKey() -> SongKeys {
-        return selectedKey
-    }
-    
+
     func getSelcetedKeyIndex() -> Int {
         if let index = possibleSongKeys.index(of: selectedKey) {
             return index
         }
         return 0
-    }
-    
-    func getVisibleView() -> SongsFiltersView {
-        return view
     }
     
     func setVisibleView(_ view: SongsFiltersView) {
@@ -71,19 +57,10 @@ class FiltersContent {
     
     func setKey(forKeyAt index: Int) {
         selectedKey = possibleSongKeys[index]
-        print("selected key: \(selectedKey.rawValue)")
     }
     
     func setIsDescending(_ isOn: Bool) {
         isDescending = isOn
-    }
-    
-    func getIsDescending() -> Bool {
-        return isDescending
-    }
-
-    func getInputValue() -> String {
-        return inputValue
     }
     
 }

@@ -16,9 +16,9 @@ class SongsFiltersViewModel {
     
     func fetchPickerComponents() {
         self.restoreFilters?(songFilters.getSelcetedKeyIndex(),
-                             songFilters.getInputValue(),
-                             songFilters.getIsDescending(),
-                             songFilters.getVisibleView().hashValue)
+                             songFilters.inputValue,
+                             songFilters.isDescending,
+                             songFilters.view.hashValue)
     }
     
     func saveSearch(_ term: String) {
@@ -34,15 +34,15 @@ class SongsFiltersViewModel {
     }
     
     func getPickerComponent(at index: Int) -> SongKeys {
-        return songFilters.getPossibleSongKeys()[index]
+        return songFilters.possibleSongKeys[index]
     }
     
     func getSelectedComponent() -> SongKeys {
-        return songFilters.getSelectedKey()
+        return songFilters.selectedKey
     }
     
     func numberOfPickerComponents() -> Int {
-        return songFilters.getPossibleSongKeys().count
+        return songFilters.possibleSongKeys.count
     }
     
     func setSelectedKey(at index: Int) {
