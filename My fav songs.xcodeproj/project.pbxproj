@@ -35,7 +35,6 @@
 		3CBFFABC20ACD6F100136178 /* Song.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CBFFABB20ACD6F100136178 /* Song.swift */; };
 		3CBFFABE20ACD89400136178 /* ResultData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CBFFABD20ACD89400136178 /* ResultData.swift */; };
 		3CFEB7B320B734CC00D48E96 /* SongsFiltersViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CFEB7B220B734CC00D48E96 /* SongsFiltersViewModel.swift */; };
-		3CFEB7B720B7627800D48E96 /* SongMO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CFEB7B620B7627800D48E96 /* SongMO.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -108,7 +107,6 @@
 		3CBFFABB20ACD6F100136178 /* Song.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Song.swift; sourceTree = "<group>"; };
 		3CBFFABD20ACD89400136178 /* ResultData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultData.swift; sourceTree = "<group>"; };
 		3CFEB7B220B734CC00D48E96 /* SongsFiltersViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongsFiltersViewModel.swift; sourceTree = "<group>"; };
-		3CFEB7B620B7627800D48E96 /* SongMO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongMO.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -265,7 +263,6 @@
 			isa = PBXGroup;
 			children = (
 				3CBFFABB20ACD6F100136178 /* Song.swift */,
-				3CFEB7B620B7627800D48E96 /* SongMO.swift */,
 				3CBFFABD20ACD89400136178 /* ResultData.swift */,
 				3C5923A620BEE887007B85A7 /* FiltersContent.swift */,
 			);
@@ -396,7 +393,6 @@
 			files = (
 				3C84A52220AE705400DB8807 /* UIViewExtension.swift in Sources */,
 				3C9DDDCE20AB8B8E00D72ABE /* SongTableViewCell.swift in Sources */,
-				3CFEB7B720B7627800D48E96 /* SongMO.swift in Sources */,
 				3C00960120AE29FD0017E6A6 /* CoreDataService.swift in Sources */,
 				3C0095FA20AD72690017E6A6 /* SavedSongsViewModel.swift in Sources */,
 				3C5923A720BEE887007B85A7 /* FiltersContent.swift in Sources */,

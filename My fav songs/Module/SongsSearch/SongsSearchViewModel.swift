@@ -8,12 +8,12 @@
 
 import Foundation
 
-// Take a look at comments from SavedSongsViewModel
+// Just like in SavedSongsVM, I got rid of unnecessary properties replacing them with closures.
 class SongsSearchViewModel {
     
     private var data: ResultData
-    let apiService: APIProtocol
-    let coreDataService: CoreDataOperationsProtocol
+    private let apiService: APIProtocol
+    private let coreDataService: CoreDataOperationsProtocol
     
     private var cellViewModels: [SongListCellViewModel] = [SongListCellViewModel]() {
         didSet {
@@ -21,17 +21,11 @@ class SongsSearchViewModel {
         }
     }
     
-    private var isLoading: Bool = false {
-        didSet {
-            self.updateLoadingStatus?(isLoading)
-        }
-    }
-    
     var selectedSong: Song?
     
     var reloadTableViewClosure: (()->())?
     var showAlertClosure: ((Error)->Void)?
-    var updateLoadingStatus: ((Bool)->(Void))?
+    var showLoadingStatus: ((Bool)->(Void))?
     var saveSongModal: (()->())?
     
     init(apiService: APIProtocol = WebService(), appDelegate: AppDelegate) {
@@ -41,10 +35,10 @@ class SongsSearchViewModel {
     }
     
     func searchForSongs(_ query: String) {
-        self.isLoading = true
+        self.showLoadingStatus?(true)
         apiService.fetchSongs(query: query, onSuccess: { (resultData) in
             self.processFetchedSongs(resultData)
-            self.isLoading = false
+            self.showLoadingStatus?(false)
         }, onFailure: { (error) in
             self.showAlertClosure?(error)
         })
@@ -58,7 +52,7 @@ class SongsSearchViewModel {
         return cellViewModels.count
     }
     
-    func createCellViewModel(song: Song) -> SongListCellViewModel {
+    private func createCellViewModel(song: Song) -> SongListCellViewModel {
         return SongListCellViewModel(artistNameText: song.artistName,
                                      songTitleText: song.trackName,
                                      artworkUrl: song.artworkUrl100,
