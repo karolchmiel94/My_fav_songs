@@ -44,7 +44,7 @@ class SongsSearchViewController: UIViewController {
             }
         }
         
-        viewModel.updateLoadingStatus = { (isLoading) in
+        viewModel.showLoadingStatus = { (isLoading) in
             guard let vc = self as SongsSearchViewController? else {
                 return
             }

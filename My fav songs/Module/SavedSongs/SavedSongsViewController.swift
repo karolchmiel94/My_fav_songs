@@ -9,15 +9,16 @@
 import UIKit
 import KCHModalStatus
 
+// Going to SongsFiltersVC is done by by segue which is configured in prepare(for segue:(...)) method
 class SavedSongsViewController: UIViewController {
 
     @IBOutlet weak var noSongsLabel: UILabel!
     @IBOutlet weak var songsTableView: UITableView!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
-    let CELL_BUTTON_TEXT = "Delete"
-    let CELL_ID = "songCell"
-    let CELL_NIB_NAME = "SongCell"
+    private let CELL_BUTTON_TEXT = "Delete"
+    private let CELL_ID = "songCell"
+    private let CELL_NIB_NAME = "SongCell"
     
     lazy var viewModel: SavedSongsViewModel = {
         return SavedSongsViewModel(appDelegate: UIApplication.shared.delegate as! AppDelegate)
@@ -34,11 +35,11 @@ class SavedSongsViewController: UIViewController {
         super.viewWillAppear(true)
     }
     
-    func setViews() {
+    private func setViews() {
         showEmptyListLabel()
     }
     
-    func setVM() {
+    private func setVM() {
         viewModel.showAlertClosure = { (error) in
             guard let vc = self as SavedSongsViewController? else {
                 return
@@ -49,7 +50,7 @@ class SavedSongsViewController: UIViewController {
             }
         }
         
-        viewModel.updateLoadingStatus = { (isLoading) in
+        viewModel.showLoadingStatus = { (isLoading) in
             guard let vc = self as SavedSongsViewController? else {
                 return
             }
@@ -85,21 +86,21 @@ class SavedSongsViewController: UIViewController {
         }
     }
     
-    func showEmptyListLabel() {
+    private func showEmptyListLabel() {
         songsTableView.isHidden = true
         activityIndicator.stopAnimating()
         activityIndicator.isHidden = true
         noSongsLabel.isHidden = false
     }
     
-    func showLoadingIndicator() {
+    private func showLoadingIndicator() {
         noSongsLabel.isHidden = true
         songsTableView.isHidden = true
         activityIndicator.isHidden = false
         activityIndicator.startAnimating()
     }
     
-    func showTableView() {
+    private func showTableView() {
         noSongsLabel.isHidden = true
         activityIndicator.isHidden = true
         activityIndicator.stopAnimating()

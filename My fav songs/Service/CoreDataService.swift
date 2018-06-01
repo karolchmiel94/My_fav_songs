@@ -9,6 +9,10 @@
 import Foundation
 import CoreData
 
+// Protocol name's changed
+// Fixed encapsulation
+// Used use NSManagedObject.fetchRequest and API: NSManagedObject(context: context) for creating a Songs object
+// Moved parsing Song object to Song's class
 protocol CoreDataOperationsProtocol {
     func fetchSongs(onSuccess: @escaping([Song]) -> Void, onFailure: @escaping(Error) -> Void)
     func saveSong(_ song: Song, onSuccess: @escaping(Bool) -> Void, onFailure: @escaping(Error) -> Void)
@@ -31,9 +35,8 @@ class CoreDataService: CoreDataOperationsProtocol {
         self.entity = NSEntityDescription.entity(forEntityName: ENTITY_NAME, in: self.context)!
     }
     
-    func fetchRequest() -> NSFetchRequest<NSManagedObject> {
-        // Please use NSManagedObject.fetchRequest
-        return NSFetchRequest<NSManagedObject>(entityName: ENTITY_NAME)
+    func fetchRequest() -> NSFetchRequest<Songs> {
+        return Songs.fetchRequest()
     }
     
     func fetchSongs(onSuccess: @escaping ([Song]) -> Void, onFailure: @escaping (Error) -> Void) {
@@ -42,7 +45,7 @@ class CoreDataService: CoreDataOperationsProtocol {
             let result = try context.fetch(fetchRequest)
             var songs = [Song]()
             for song in result {
-                songs.append(parseSongData(song))
+                songs.append(Song.init(from: song))
             }
             onSuccess(songs)
         } catch let error {
@@ -52,8 +55,8 @@ class CoreDataService: CoreDataOperationsProtocol {
     }
     
     func saveSong(_ song: Song, onSuccess: @escaping (Bool) -> Void, onFailure: @escaping (Error) -> Void) {
-        let entity = NSEntityDescription.entity(forEntityName: "Songs", in: self.context)
-        let record = SongMO(entity: entity!, insertInto: self.context)
+        let entity = NSEntityDescription.entity(forEntityName: ENTITY_NAME, in: self.context)
+        let record = Songs(entity: entity!, insertInto: self.context)
         record.artistName = song.artistName
         record.trackName = song.trackName
         record.artworkUrl100 = song.artworkUrl100
@@ -68,7 +71,7 @@ class CoreDataService: CoreDataOperationsProtocol {
             let result = try context.fetch(fetchRequest)
             var songs = [Song]()
             for song in result {
-                songs.append(parseSongData(song))
+                songs.append(Song.init(from: song))
             }
             onSuccess(songs)
         } catch let error {
@@ -84,7 +87,7 @@ class CoreDataService: CoreDataOperationsProtocol {
             let results = try context.fetch(fetchRequest)
             var songs = [Song]()
             for song in results {
-                songs.append(parseSongData(song))
+                songs.append(Song.init(from: song))
             }
             onSuccess(songs)
         } catch let error {
@@ -108,15 +111,5 @@ class CoreDataService: CoreDataOperationsProtocol {
         } catch {
             onFailure(error)
         }
-    }
-}
-
-extension CoreDataService {
-    // Use Songs class instead of the superclass.
-    func parseSongData(_ song: NSManagedObject) -> Song {
-        return Song(artistName: song.value(forKey: SongKeys.artistName.rawValue) as! String,
-             trackName: song.value(forKey: SongKeys.trackName.rawValue) as! String,
-             artworkUrl100: song.value(forKey: SongKeys.artworkUrl100.rawValue) as! String,
-             primaryGenreName: song.value(forKey: SongKeys.primaryGenreName.rawValue) as! String)
     }
 }

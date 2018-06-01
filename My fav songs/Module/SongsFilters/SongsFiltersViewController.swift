@@ -14,6 +14,9 @@ import UIKit
 // without entering the whole config from scratch)
 // On the other side, the saved songs VC could somehow observe the changes in the filters state object and reload itself once
 // it changes. This would also loosen the dependencies beetween filters vc and savedsongs vc.
+
+// I've added singleton which holds filters user edited so coming back to this view shows previously entered data.
+
 protocol SongsFiltersDelegate {
     func filterSongsBy(_ songDataType: SongKeys, _ ascending: Bool)
     func searchSongBy(_ text: String, _ songDataType: SongKeys)
