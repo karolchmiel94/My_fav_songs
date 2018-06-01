@@ -16,7 +16,9 @@ import UIKit
 // it changes. This would also loosen the dependencies beetween filters vc and savedsongs vc.
 
 // I've added singleton which holds filters user edited so coming back to this view shows previously entered data.
-
+// My tries to loosen the dependencies between filters vc and searched songs vc but only solution I came out with was to move delegate
+// from this vc to singleton holding filters states. If filters states values' would change, I'd trigger reloading saved songs but it doesn't
+// seems like improvement.
 protocol SongsFiltersDelegate {
     func filterSongsBy(_ songDataType: SongKeys, _ ascending: Bool)
     func searchSongBy(_ text: String, _ songDataType: SongKeys)
