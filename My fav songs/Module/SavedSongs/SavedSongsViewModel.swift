@@ -61,12 +61,9 @@ class SavedSongsViewModel {
         self.data = data
         
         // Try to fit the lines below into one line with some of Swift's magic ;)
-        // I've tried to find that solution on web but had no idea what term to look for
-        var vms = [SongListCellViewModel]()
-        for song in data {
-            vms.append(createCellViewModel(song: song))
-        }
-        self.cellViewModels = vms
+        // I've tried to find that solution on web but had no idea what term to look for.
+        // Ok, found it :)
+        self.cellViewModels = data.map({createCellViewModel(song: $0)})
     }
 }
 
