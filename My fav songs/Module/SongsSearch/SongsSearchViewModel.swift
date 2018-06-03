@@ -61,11 +61,7 @@ class SongsSearchViewModel {
     
     private func processFetchedSongs(_ data: ResultData) {
         self.data = data
-        var vms = [SongListCellViewModel]()
-        for song in data.results {
-            vms.append(createCellViewModel(song: song))
-        }
-        self.cellViewModels = vms
+        self.cellViewModels = data.results.map({createCellViewModel(song: $0)})
     }
 }
 
